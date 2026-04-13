@@ -672,7 +672,7 @@ public class Statics {
     public static LocTypeList field4266;
 
     @ObfuscatedName("om.g")
-    public static int[] field4267;
+    public static int[] floorOverlayColours;
 
     @ObfuscatedName("om.c")
     public static MSITypeList field4268;

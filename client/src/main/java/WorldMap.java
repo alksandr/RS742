@@ -57,7 +57,7 @@ public class WorldMap {
         Statics.field4293 = new Object[Statics.currentAreaDisplaySizeX * Statics.currentAreaDisplaySizeZ];
         Statics.field4294 = new byte[Statics.currentAreaDisplaySizeX * Statics.currentAreaDisplaySizeZ];
         Statics.field4295 = new ArrayList[3][Statics.currentAreaDisplaySizeX >> 6][Statics.currentAreaDisplaySizeZ >> 6];
-        Statics.field4267 = new int[Statics.field4278.capacity + 1];
+        Statics.floorOverlayColours = new int[Statics.field4278.capacity + 1];
     }
 
     @ObfuscatedName("om.a()V")
@@ -70,7 +70,7 @@ public class WorldMap {
         Statics.field4293 = null;
         Statics.field4294 = null;
         Statics.field4295 = null;
-        Statics.field4267 = null;
+        Statics.floorOverlayColours = null;
     }
 
     @ObfuscatedName("om.s(I)V")
@@ -107,12 +107,12 @@ public class WorldMap {
     @ObfuscatedName("om.l(Lma;II)V")
     public static void computeFloorOverlayColours(MaterialTypeList arg0, int arg1, int arg2) {
         for (int var3 = 0; var3 < Statics.field4278.capacity; var3++) {
-            Statics.field4267[var3 + 1] = method7088(arg0, var3, arg1, arg2);
+            Statics.floorOverlayColours[var3 + 1] = computeFloorOverlayColour(arg0, var3, arg1, arg2);
         }
     }
 
     @ObfuscatedName("om.f(Lma;III)I")
-    public static int method7088(MaterialTypeList arg0, int arg1, int arg2, int arg3) {
+    public static int computeFloorOverlayColour(MaterialTypeList arg0, int arg1, int arg2, int arg3) {
         FloorOverlayType var4 = Statics.field4278.get(arg1);
         if (var4 == null) {
             return 0;
@@ -551,7 +551,7 @@ public class WorldMap {
                                 if (Statics.currentArea.field10366 != -1) {
                                     var21 = Statics.currentArea.field10366 | 0xFF000000;
                                 } else if ((Statics.field4297 + var12 & 0x4) == (Statics.field4296 + var7 & 0x4)) {
-                                    var21 = Statics.field4267[Statics.field4278.field5108 + 1];
+                                    var21 = Statics.floorOverlayColours[Statics.field4278.field5108 + 1];
                                 } else {
                                     var21 = -11840664;
                                 }
@@ -583,7 +583,7 @@ public class WorldMap {
                         if (Statics.currentArea.field10366 != -1) {
                             var28 = Statics.currentArea.field10366 | 0xFF000000;
                         } else if ((Statics.field4297 + var24 & 0x4) == (Statics.field4296 + var7 & 0x4)) {
-                            var28 = Statics.field4267[Statics.field4278.field5108 + 1];
+                            var28 = Statics.floorOverlayColours[Statics.field4278.field5108 + 1];
                         } else {
                             var28 = -11840664;
                         }
@@ -697,13 +697,13 @@ public class WorldMap {
             } else {
                 int var11 = arg7 & 0x3F;
                 if (var11 == 0 || arg3 <= 1 || arg4 <= 1) {
-                    int var13 = Statics.field4267[arg6];
+                    int var13 = Statics.floorOverlayColours[arg6];
                     if (arg10 || var13 != 0) {
                         arg0.B(arg1, arg2, arg3, arg4, var13, 0);
                     }
                 } else {
                     int var12 = arg10 ? 0 : 1;
-                    WorldMapTileShapes.method4630(arg0, Statics.tileShapes, Statics.tileSize, arg1, arg2, arg5, Statics.field4267[arg6], arg3, arg4, var11, arg7 >> 6 & 0x3, var12);
+                    WorldMapTileShapes.method4630(arg0, Statics.tileShapes, Statics.tileSize, arg1, arg2, arg5, Statics.floorOverlayColours[arg6], arg3, arg4, var11, arg7 >> 6 & 0x3, var12);
                 }
             }
         }
