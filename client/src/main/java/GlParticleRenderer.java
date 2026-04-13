@@ -80,7 +80,7 @@ public class GlParticleRenderer {
             DualLink var10 = arg1.field1311.field6653;
             for (DualLink var11 = var10.field9265; var11 != var10; var11 = var11.field9265) {
                 Particle var12 = (Particle) var11;
-                int var13 = (int) ((float) (var12.field10147 >> 12) * var5 + (float) (var12.field10146 >> 12) * var4 + (float) (var12.field10145 >> 12) * var3 + var6);
+                int var13 = (int) ((float) (var12.posZ >> 12) * var5 + (float) (var12.posY >> 12) * var4 + (float) (var12.posX >> 12) * var3 + var6);
                 if (var13 > var9) {
                     var9 = var13;
                 }
@@ -114,11 +114,11 @@ public class GlParticleRenderer {
                 while (var10 != var16) {
                     Particle var23 = (Particle) var16;
                     if (var20) {
-                        var18 = var23.field10149;
+                        var18 = var23.spriteId;
                         var19 = var23.field10150;
                         var20 = false;
                     }
-                    if (var17 > 0 && (var23.field10149 != var18 || var23.field10150 != var19)) {
+                    if (var17 > 0 && (var23.spriteId != var18 || var23.field10150 != var19)) {
                         var20 = true;
                         break;
                     }
@@ -183,15 +183,15 @@ public class GlParticleRenderer {
                 if (var19 > 0) {
                     for (int var20 = var19 - 1; var20 >= 0; var20--) {
                         Particle var21 = this.field1119[var18][var20];
-                        int var22 = var21.field10144;
+                        int var22 = var21.colour;
                         byte var23 = (byte) (var22 >> 16);
                         byte var24 = (byte) (var22 >> 8);
                         byte var25 = (byte) var22;
                         byte var26 = (byte) (var22 >>> 24);
-                        float var27 = (float) (var21.field10145 >> 12);
-                        float var28 = (float) (var21.field10146 >> 12);
-                        float var29 = (float) (var21.field10147 >> 12);
-                        int var30 = var21.field10148 >> 12;
+                        float var27 = (float) (var21.posX >> 12);
+                        float var28 = (float) (var21.posY >> 12);
+                        float var29 = (float) (var21.posZ >> 12);
+                        int var30 = var21.size >> 12;
                         this.field1120.method16851(0.0F);
                         this.field1120.method16851(0.0F);
                         this.field1120.method16851((float) -var30 * var9 + var27);
@@ -233,15 +233,15 @@ public class GlParticleRenderer {
                         int var31 = this.field1131[var18] - 64 - 1;
                         for (int var32 = this.field1132[var31] - 1; var32 >= 0; var32--) {
                             Particle var33 = this.field1122[var31][var32];
-                            int var34 = var33.field10144;
+                            int var34 = var33.colour;
                             byte var35 = (byte) (var34 >> 16);
                             byte var36 = (byte) (var34 >> 8);
                             byte var37 = (byte) var34;
                             byte var38 = (byte) (var34 >>> 24);
-                            float var39 = (float) (var33.field10145 >> 12);
-                            float var40 = (float) (var33.field10146 >> 12);
-                            float var41 = (float) (var33.field10147 >> 12);
-                            int var42 = var33.field10148 >> 12;
+                            float var39 = (float) (var33.posX >> 12);
+                            float var40 = (float) (var33.posY >> 12);
+                            float var41 = (float) (var33.posZ >> 12);
+                            int var42 = var33.size >> 12;
                             this.field1120.method16851(0.0F);
                             this.field1120.method16851(0.0F);
                             this.field1120.method16851((float) -var42 * var9 + var39);
@@ -288,15 +288,15 @@ public class GlParticleRenderer {
                 if (var44 > 0) {
                     for (int var45 = var44 - 1; var45 >= 0; var45--) {
                         Particle var46 = this.field1119[var43][var45];
-                        int var47 = var46.field10144;
+                        int var47 = var46.colour;
                         byte var48 = (byte) (var47 >> 16);
                         byte var49 = (byte) (var47 >> 8);
                         byte var50 = (byte) var47;
                         byte var51 = (byte) (var47 >>> 24);
-                        float var52 = (float) (var46.field10145 >> 12);
-                        float var53 = (float) (var46.field10146 >> 12);
-                        float var54 = (float) (var46.field10147 >> 12);
-                        int var55 = var46.field10148 >> 12;
+                        float var52 = (float) (var46.posX >> 12);
+                        float var53 = (float) (var46.posY >> 12);
+                        float var54 = (float) (var46.posZ >> 12);
+                        int var55 = var46.size >> 12;
                         this.field1120.method16855(0.0F);
                         this.field1120.method16855(0.0F);
                         this.field1120.method16855((float) -var55 * var9 + var52);
@@ -338,15 +338,15 @@ public class GlParticleRenderer {
                         int var56 = this.field1131[var43] - 64 - 1;
                         for (int var57 = this.field1132[var56] - 1; var57 >= 0; var57--) {
                             Particle var58 = this.field1122[var56][var57];
-                            int var59 = var58.field10144;
+                            int var59 = var58.colour;
                             byte var60 = (byte) (var59 >> 16);
                             byte var61 = (byte) (var59 >> 8);
                             byte var62 = (byte) var59;
                             byte var63 = (byte) (var59 >>> 24);
-                            float var64 = (float) (var58.field10145 >> 12);
-                            float var65 = (float) (var58.field10146 >> 12);
-                            float var66 = (float) (var58.field10147 >> 12);
-                            int var67 = var58.field10148 >> 12;
+                            float var64 = (float) (var58.posX >> 12);
+                            float var65 = (float) (var58.posY >> 12);
+                            float var66 = (float) (var58.posZ >> 12);
+                            int var67 = var58.size >> 12;
                             this.field1120.method16855(0.0F);
                             this.field1120.method16855(0.0F);
                             this.field1120.method16855((float) -var67 * var9 + var64);

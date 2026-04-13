@@ -309,9 +309,9 @@ public class ModelUnlit {
                 }
                 if (var19.field1347 != null) {
                     for (int var23 = 0; var23 < var19.field1347.length; var23++) {
-                        int var24 = this.method2620(var19, var19.field1347[var23].field1374, var18);
-                        int var25 = this.method2620(var19, var19.field1347[var23].field1375, var18);
-                        int var26 = this.method2620(var19, var19.field1347[var23].field1376, var18);
+                        int var24 = this.method2620(var19, var19.field1347[var23].vertexA, var18);
+                        int var25 = this.method2620(var19, var19.field1347[var23].vertexB, var18);
+                        int var26 = this.method2620(var19, var19.field1347[var23].vertexC, var18);
                         this.field1347[var14] = var19.field1347[var23].method2701(var24, var25, var26);
                         var14++;
                     }

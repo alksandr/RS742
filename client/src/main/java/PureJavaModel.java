@@ -2854,7 +2854,7 @@ public class PureJavaModel extends Model {
                 this.field7836[var31] = -5000.0F;
                 var30 = true;
             }
-            if (this.field7785.field871) {
+            if (this.field7785.fogEnabled) {
                 this.field7835[var31] = (int) (var5.entries[9] * (float) var34 + var5.entries[1] * (float) var32 + var5.entries[5] * (float) var33 + var5.entries[13]);
             }
         }
@@ -2960,7 +2960,7 @@ public class PureJavaModel extends Model {
         this.field7768.field1006 = (arg2 & 0x1) == 0;
         this.field7768.field986 = false;
         try {
-            this.method13019(this.field7839.colour != null, this.field7839.toolkit != null, (arg2 & 0x4) != 0, var30, this.field7785.field866 && var25 > this.field7785.field867 || this.field7785.field871);
+            this.method13019(this.field7839.colour != null, this.field7839.toolkit != null, (arg2 & 0x4) != 0, var30, this.field7785.field866 && var25 > this.field7785.field867 || this.field7785.fogEnabled);
         } catch (Exception var102) {
         }
         if (this.field7794 != null) {
@@ -3114,27 +3114,27 @@ public class PureJavaModel extends Model {
 
     @ObfuscatedName("yx.gx(ZZZI)V")
     public final void method13074(boolean arg0, boolean arg1, boolean arg2, int arg3) {
-        if (this.field7785.field871) {
+        if (this.field7785.fogEnabled) {
             short var26 = this.field7789[arg3];
             short var27 = this.field7790[arg3];
             short var28 = this.field7838[arg3];
             float var29 = 0.0F;
             float var30 = 0.0F;
             float var31 = 0.0F;
-            if (this.field7835[var26] > this.field7785.field873) {
+            if (this.field7835[var26] > this.field7785.fogEndHeight) {
                 var29 = 1.0F;
-            } else if (this.field7835[var26] > this.field7785.field872) {
-                var29 = (float) (this.field7785.field872 - this.field7835[var26]) * 1.0F / (float) (this.field7785.field872 - this.field7785.field873);
+            } else if (this.field7835[var26] > this.field7785.fogStartHeight) {
+                var29 = (float) (this.field7785.fogStartHeight - this.field7835[var26]) * 1.0F / (float) (this.field7785.fogStartHeight - this.field7785.fogEndHeight);
             }
-            if (this.field7835[var27] > this.field7785.field873) {
+            if (this.field7835[var27] > this.field7785.fogEndHeight) {
                 var30 = 1.0F;
-            } else if (this.field7835[var27] > this.field7785.field872) {
-                var30 = (float) (this.field7785.field872 - this.field7835[var27]) * 1.0F / (float) (this.field7785.field872 - this.field7785.field873);
+            } else if (this.field7835[var27] > this.field7785.fogStartHeight) {
+                var30 = (float) (this.field7785.fogStartHeight - this.field7835[var27]) * 1.0F / (float) (this.field7785.fogStartHeight - this.field7785.fogEndHeight);
             }
-            if (this.field7835[var28] > this.field7785.field873) {
+            if (this.field7835[var28] > this.field7785.fogEndHeight) {
                 var31 = 1.0F;
-            } else if (this.field7835[var28] > this.field7785.field872) {
-                var31 = (float) (this.field7785.field872 - this.field7835[var28]) * 1.0F / (float) (this.field7785.field872 - this.field7785.field873);
+            } else if (this.field7835[var28] > this.field7785.fogStartHeight) {
+                var31 = (float) (this.field7785.fogStartHeight - this.field7835[var28]) * 1.0F / (float) (this.field7785.fogStartHeight - this.field7785.fogEndHeight);
             }
             if (this.field7805 == null) {
                 this.field7768.field987 = 0;
@@ -3354,15 +3354,15 @@ public class PureJavaModel extends Model {
                 if (var4.field1372 != null) {
                     var5 = var4.field1372;
                 }
-                var5.field1378 = (int) (var2.entries[8] * (float) this.field7820[var4.field1374] + var2.entries[0] * (float) this.field7807[var4.field1374] + var2.entries[4] * (float) this.field7783[var4.field1374] + var2.entries[12]);
-                var5.field1379 = (int) (var2.entries[9] * (float) this.field7820[var4.field1374] + var2.entries[1] * (float) this.field7807[var4.field1374] + var2.entries[5] * (float) this.field7783[var4.field1374] + var2.entries[13]);
-                var5.field1380 = (int) (var2.entries[10] * (float) this.field7820[var4.field1374] + var2.entries[2] * (float) this.field7807[var4.field1374] + var2.entries[6] * (float) this.field7783[var4.field1374] + var2.entries[14]);
-                var5.field1381 = (int) (var2.entries[8] * (float) this.field7820[var4.field1375] + var2.entries[0] * (float) this.field7807[var4.field1375] + var2.entries[4] * (float) this.field7783[var4.field1375] + var2.entries[12]);
-                var5.field1377 = (int) (var2.entries[9] * (float) this.field7820[var4.field1375] + var2.entries[1] * (float) this.field7807[var4.field1375] + var2.entries[5] * (float) this.field7783[var4.field1375] + var2.entries[13]);
-                var5.field1373 = (int) (var2.entries[10] * (float) this.field7820[var4.field1375] + var2.entries[2] * (float) this.field7807[var4.field1375] + var2.entries[6] * (float) this.field7783[var4.field1375] + var2.entries[14]);
-                var5.field1384 = (int) (var2.entries[8] * (float) this.field7820[var4.field1376] + var2.entries[0] * (float) this.field7807[var4.field1376] + var2.entries[4] * (float) this.field7783[var4.field1376] + var2.entries[12]);
-                var5.field1385 = (int) (var2.entries[9] * (float) this.field7820[var4.field1376] + var2.entries[1] * (float) this.field7807[var4.field1376] + var2.entries[5] * (float) this.field7783[var4.field1376] + var2.entries[13]);
-                var5.field1386 = (int) (var2.entries[10] * (float) this.field7820[var4.field1376] + var2.entries[2] * (float) this.field7807[var4.field1376] + var2.entries[6] * (float) this.field7783[var4.field1376] + var2.entries[14]);
+                var5.x1 = (int) (var2.entries[8] * (float) this.field7820[var4.vertexA] + var2.entries[0] * (float) this.field7807[var4.vertexA] + var2.entries[4] * (float) this.field7783[var4.vertexA] + var2.entries[12]);
+                var5.y1 = (int) (var2.entries[9] * (float) this.field7820[var4.vertexA] + var2.entries[1] * (float) this.field7807[var4.vertexA] + var2.entries[5] * (float) this.field7783[var4.vertexA] + var2.entries[13]);
+                var5.z1 = (int) (var2.entries[10] * (float) this.field7820[var4.vertexA] + var2.entries[2] * (float) this.field7807[var4.vertexA] + var2.entries[6] * (float) this.field7783[var4.vertexA] + var2.entries[14]);
+                var5.x2 = (int) (var2.entries[8] * (float) this.field7820[var4.vertexB] + var2.entries[0] * (float) this.field7807[var4.vertexB] + var2.entries[4] * (float) this.field7783[var4.vertexB] + var2.entries[12]);
+                var5.y2 = (int) (var2.entries[9] * (float) this.field7820[var4.vertexB] + var2.entries[1] * (float) this.field7807[var4.vertexB] + var2.entries[5] * (float) this.field7783[var4.vertexB] + var2.entries[13]);
+                var5.z2 = (int) (var2.entries[10] * (float) this.field7820[var4.vertexB] + var2.entries[2] * (float) this.field7807[var4.vertexB] + var2.entries[6] * (float) this.field7783[var4.vertexB] + var2.entries[14]);
+                var5.x3 = (int) (var2.entries[8] * (float) this.field7820[var4.vertexC] + var2.entries[0] * (float) this.field7807[var4.vertexC] + var2.entries[4] * (float) this.field7783[var4.vertexC] + var2.entries[12]);
+                var5.y3 = (int) (var2.entries[9] * (float) this.field7820[var4.vertexC] + var2.entries[1] * (float) this.field7807[var4.vertexC] + var2.entries[5] * (float) this.field7783[var4.vertexC] + var2.entries[13]);
+                var5.z3 = (int) (var2.entries[10] * (float) this.field7820[var4.vertexC] + var2.entries[2] * (float) this.field7807[var4.vertexC] + var2.entries[6] * (float) this.field7783[var4.vertexC] + var2.entries[14]);
             }
         }
         if (this.field7818 == null) {

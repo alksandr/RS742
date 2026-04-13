@@ -27,9 +27,9 @@ public class h extends Model implements ua {
         int var10 = 0;
         int[] var11 = new int[var8 * 3 + var9];
         for (int var12 = 0; var12 < var8; var12++) {
-            var11[var10++] = this.field473[var12].field1374;
-            var11[var10++] = this.field473[var12].field1375;
-            var11[var10++] = this.field473[var12].field1376;
+            var11[var10++] = this.field473[var12].vertexA;
+            var11[var10++] = this.field473[var12].vertexB;
+            var11[var10++] = this.field473[var12].vertexC;
         }
         for (int var13 = 0; var13 < var9; var13++) {
             var11[var10++] = this.field471[var13].field1239;
@@ -74,15 +74,15 @@ public class h extends Model implements ua {
         if (this.field473 != null) {
             for (int var3 = 0; var3 < this.field473.length; var3++) {
                 ModelParticleEmitter var4 = this.field473[var3];
-                var4.field1378 = ja.field463[var2++];
-                var4.field1379 = ja.field463[var2++];
-                var4.field1380 = ja.field463[var2++];
-                var4.field1381 = ja.field463[var2++];
-                var4.field1377 = ja.field463[var2++];
-                var4.field1373 = ja.field463[var2++];
-                var4.field1384 = ja.field463[var2++];
-                var4.field1385 = ja.field463[var2++];
-                var4.field1386 = ja.field463[var2++];
+                var4.x1 = ja.field463[var2++];
+                var4.y1 = ja.field463[var2++];
+                var4.z1 = ja.field463[var2++];
+                var4.x2 = ja.field463[var2++];
+                var4.y2 = ja.field463[var2++];
+                var4.z2 = ja.field463[var2++];
+                var4.x3 = ja.field463[var2++];
+                var4.y3 = ja.field463[var2++];
+                var4.z3 = ja.field463[var2++];
             }
         }
         if (this.field471 == null) {

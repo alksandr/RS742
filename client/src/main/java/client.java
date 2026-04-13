@@ -2678,7 +2678,7 @@ public final class client extends GameShell {
             world.getEnvironmentManager().method8178();
             HintArrow.method7558();
             SpotShadowFactory.method4036();
-            ParticleEmitterType.method4807();
+            ParticleEmitterType.clearCache();
             ParticleEffectorType.method7882();
             ScriptRunner.field5207.method7922();
             field9131.method7922();

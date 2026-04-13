@@ -4,65 +4,65 @@ import deob.ObfuscatedName;
 public class ModelParticleEmitter {
 
     @ObfuscatedName("dx.u")
-    public final int field1383;
+    public final int typeId;
 
     @ObfuscatedName("dx.j")
     public ModelParticleEmitter field1372;
 
     @ObfuscatedName("dx.a")
-    public final int field1374;
+    public final int vertexA;
 
     @ObfuscatedName("dx.s")
-    public final int field1375;
+    public final int vertexB;
 
     @ObfuscatedName("dx.c")
-    public final int field1376;
+    public final int vertexC;
 
     @ObfuscatedName("dx.m")
     public final byte field1382;
 
     @ObfuscatedName("dx.t")
-    public int field1378;
+    public int x1;
 
     @ObfuscatedName("dx.l")
-    public int field1379;
+    public int y1;
 
     @ObfuscatedName("dx.f")
-    public int field1380;
+    public int z1;
 
     @ObfuscatedName("dx.d")
-    public int field1381;
+    public int x2;
 
     @ObfuscatedName("dx.z")
-    public int field1377;
+    public int y2;
 
     @ObfuscatedName("dx.n")
-    public int field1373;
+    public int z2;
 
     @ObfuscatedName("dx.o")
-    public int field1384;
+    public int x3;
 
     @ObfuscatedName("dx.q")
-    public int field1385;
+    public int y3;
 
     @ObfuscatedName("dx.p")
-    public int field1386;
+    public int z3;
 
     public ModelParticleEmitter(int arg0, int arg1, int arg2, int arg3, byte arg4) {
-        this.field1383 = arg0;
-        this.field1374 = arg1;
-        this.field1375 = arg2;
-        this.field1376 = arg3;
+        this.typeId = arg0;
+        this.vertexA = arg1;
+        this.vertexB = arg2;
+        this.vertexC = arg3;
         this.field1382 = arg4;
     }
 
     @ObfuscatedName("dx.u(B)Liu;")
-    public ParticleEmitterType method2702() {
-        return ParticleEmitterType.method2841(this.field1383);
+    public ParticleEmitterType getType() {
+        return ParticleEmitterType.get(this.typeId);
     }
 
     @ObfuscatedName("dx.j(IIIB)Ldx;")
     public ModelParticleEmitter method2701(int arg0, int arg1, int arg2) {
-        return new ModelParticleEmitter(this.field1383, arg0, arg1, arg2, this.field1382);
+        return new ModelParticleEmitter(this.typeId, arg0, arg1, arg2, this.field1382);
     }
 }

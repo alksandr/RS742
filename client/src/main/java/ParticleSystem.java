@@ -134,7 +134,7 @@ public class ParticleSystem {
             Iterator var5 = this.field4937.iterator();
             while (var5.hasNext()) {
                 ParticleEmitter var6 = (ParticleEmitter) var5.next();
-                for (int var7 = 0; var7 < var6.field4901.field2709; var7++) {
+                for (int var7 = 0; var7 < var6.type.initialEmissions; var7++) {
                     var6.method8070(arg0, arg1, 1, !this.field4941);
                 }
             }
@@ -175,20 +175,20 @@ public class ParticleSystem {
                 ParticleEmitter var6 = (ParticleEmitter) var5.next();
                 if (arg1 != null) {
                     for (int var7 = 0; var7 < arg1.length; var7++) {
-                        if (arg1[var7] == var6.field4916 || arg1[var7].field1372 == var6.field4916) {
+                        if (arg1[var7] == var6.modelEmitter || arg1[var7].field1372 == var6.modelEmitter) {
                             field4931[var7] = true;
                             var6.method8069();
-                            var6.field4907 = false;
+                            var6.disabled = false;
                             continue label62;
                         }
                     }
                 }
                 if (!arg2) {
-                    if (var6.field4903 == 0) {
+                    if (var6.activeCount == 0) {
                         var5.remove();
                         this.field4938--;
                     } else {
-                        var6.field4907 = true;
+                        var6.disabled = true;
                     }
                 }
             }
@@ -260,7 +260,7 @@ public class ParticleSystem {
     public ParticleList method8109() {
         this.field4940.field1311.method11676();
         for (int var1 = 0; var1 < this.field4933.length; var1++) {
-            if (this.field4933[var1] != null && this.field4933[var1].field10561 != null) {
+            if (this.field4933[var1] != null && this.field4933[var1].emitter != null) {
                 this.field4940.field1311.method11668(this.field4933[var1]);
             }
         }

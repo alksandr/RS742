@@ -155,12 +155,12 @@ public class ja extends RendererToolkit implements ua {
         int var6 = 0;
         int var7 = 0;
         for (Particle var8 = (Particle) arg0.field1311.method11670(); var8 != null; var8 = (Particle) arg0.field1311.method11671()) {
-            field439[var3++] = var8.field10145;
-            field439[var3++] = var8.field10146;
-            field439[var3++] = var8.field10147;
-            field465[var4++] = var8.field10144;
-            field458[var6++] = (short) var8.field10149;
-            field466[var5++] = var8.field10148;
+            field439[var3++] = var8.posX;
+            field439[var3++] = var8.posY;
+            field439[var3++] = var8.posZ;
+            field465[var4++] = var8.colour;
+            field458[var6++] = (short) var8.spriteId;
+            field466[var5++] = var8.size;
             if (arg1) {
                 field468[var7++] = var8.field10151;
             }

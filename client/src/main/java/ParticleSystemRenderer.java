@@ -46,7 +46,7 @@ public class ParticleSystemRenderer {
         Statics.field4927 = new ParticleSystem[ParticleLimits.field1351[field4929] + 1];
         field4923 = 0;
         field4928 = 0;
-        ParticleEmitterType.method7704(arg0);
+        ParticleEmitterType.setJs5(arg0);
         ParticleEffectorType.method3618(arg0);
     }
 

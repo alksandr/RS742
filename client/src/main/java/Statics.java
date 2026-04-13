@@ -390,7 +390,7 @@ public class Statics {
     public static int cameraState;
 
     @ObfuscatedName("iu.s")
-    public static Js5 field2675;
+    public static Js5 particleEmitterJs5;
 
     @ObfuscatedName("iu.mn")
     public static short[] field2744;

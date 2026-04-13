@@ -6,98 +6,98 @@ import java.util.Iterator;
 public class MovingParticle extends Particle {
 
     @ObfuscatedName("akp.p")
-    public ParticleEmitter field10561;
+    public ParticleEmitter emitter;
 
     @ObfuscatedName("akp.w")
-    public short field10558;
+    public short ringIndex;
 
     @ObfuscatedName("akp.b")
-    public short field10560;
+    public short lifetime;
 
     @ObfuscatedName("akp.x")
-    public short field10562;
+    public short lifetimeRemaining;
 
     @ObfuscatedName("akp.i")
-    public int field10559;
+    public int colourFraction;
 
     @ObfuscatedName("akp.v")
-    public int field10563;
+    public int speed;
 
     @ObfuscatedName("akp.k")
-    public short field10564;
+    public short velX;
 
     @ObfuscatedName("akp.h")
-    public short field10565;
+    public short velY;
 
     @ObfuscatedName("akp.r")
-    public short field10566;
+    public short velZ;
 
     public MovingParticle(ParticleEmitter arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9, int arg10, int arg11, boolean arg12, boolean arg13) {
-        this.field10561 = arg0;
-        this.field10145 = arg1 << 12;
-        this.field10146 = arg2 << 12;
-        this.field10147 = arg3 << 12;
-        this.field10144 = arg9;
-        this.field10560 = this.field10562 = (short) arg8;
-        this.field10148 = arg10;
-        this.field10149 = arg11;
+        this.emitter = arg0;
+        this.posX = arg1 << 12;
+        this.posY = arg2 << 12;
+        this.posZ = arg3 << 12;
+        this.colour = arg9;
+        this.lifetime = this.lifetimeRemaining = (short) arg8;
+        this.size = arg10;
+        this.spriteId = arg11;
         this.field10150 = arg13;
-        this.field10564 = (short) arg4;
-        this.field10565 = (short) arg5;
-        this.field10566 = (short) arg6;
-        this.field10563 = arg7;
-        this.field10151 = this.field10561.field4916.field1382;
+        this.velX = (short) arg4;
+        this.velY = (short) arg5;
+        this.velZ = (short) arg6;
+        this.speed = arg7;
+        this.field10151 = this.emitter.modelEmitter.field1382;
         this.method16974();
     }
 
     @ObfuscatedName("akp.c(Lqo;IIIIIIIIIIIZZ)V")
     public void method16973(ParticleEmitter arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9, int arg10, int arg11, boolean arg12, boolean arg13) {
-        this.field10561 = arg0;
-        this.field10145 = arg1 << 12;
-        this.field10146 = arg2 << 12;
-        this.field10147 = arg3 << 12;
-        this.field10144 = arg9;
-        this.field10560 = this.field10562 = (short) arg8;
-        this.field10148 = arg10;
-        this.field10149 = arg11;
+        this.emitter = arg0;
+        this.posX = arg1 << 12;
+        this.posY = arg2 << 12;
+        this.posZ = arg3 << 12;
+        this.colour = arg9;
+        this.lifetime = this.lifetimeRemaining = (short) arg8;
+        this.size = arg10;
+        this.spriteId = arg11;
         this.field10150 = arg13;
-        this.field10564 = (short) arg4;
-        this.field10565 = (short) arg5;
-        this.field10566 = (short) arg6;
-        this.field10563 = arg7;
-        this.field10151 = this.field10561.field4916.field1382;
+        this.velX = (short) arg4;
+        this.velY = (short) arg5;
+        this.velZ = (short) arg6;
+        this.speed = arg7;
+        this.field10151 = this.emitter.modelEmitter.field1382;
         this.method16974();
     }
 
     @ObfuscatedName("akp.m()V")
     public void method16974() {
-        int var1 = this.field10561.field4902.field4934;
-        if (this.field10561.field4902.field4933[var1] != null) {
-            this.field10561.field4902.field4933[var1].method16977();
+        int var1 = this.emitter.system.field4934;
+        if (this.emitter.system.field4933[var1] != null) {
+            this.emitter.system.field4933[var1].method16977();
         }
-        this.field10561.field4902.field4933[var1] = this;
-        this.field10558 = (short) this.field10561.field4902.field4934;
-        this.field10561.field4902.field4934 = var1 + 1 & 0x1FFF;
-        this.field10561.field4904.method11640(this);
+        this.emitter.system.field4933[var1] = this;
+        this.ringIndex = (short) this.emitter.system.field4934;
+        this.emitter.system.field4934 = var1 + 1 & 0x1FFF;
+        this.emitter.particles.method11640(this);
     }
 
     @ObfuscatedName("akp.t(JI)V")
     public void method16975(long arg0, int arg1) {
-        this.field10562 = (short) (this.field10562 - arg1);
-        if (this.field10562 <= 0) {
+        this.lifetimeRemaining = (short) (this.lifetimeRemaining - arg1);
+        if (this.lifetimeRemaining <= 0) {
             this.method16977();
             return;
         }
-        int var4 = this.field10145 >> 12;
-        int var5 = this.field10146 >> 12;
-        int var6 = this.field10147 >> 12;
-        ParticleSystem var7 = this.field10561.field4902;
-        ParticleEmitterType var8 = this.field10561.field4901;
-        if (var8.field2712 != 0) {
-            if (this.field10560 - this.field10562 <= var8.field2734) {
-                int var9 = var8.field2736 * arg1 + (this.field10559 >> 16 & 0xFF) + (this.field10144 >> 8 & 0xFF00);
-                int var10 = var8.field2686 * arg1 + (this.field10559 >> 8 & 0xFF) + (this.field10144 & 0xFF00);
-                int var11 = var8.field2738 * arg1 + ((this.field10144 & 0xFF) << 8) + (this.field10559 & 0xFF);
+        int var4 = this.posX >> 12;
+        int var5 = this.posY >> 12;
+        int var6 = this.posZ >> 12;
+        ParticleSystem var7 = this.emitter.system;
+        ParticleEmitterType var8 = this.emitter.type;
+        if (var8.targetColour != 0) {
+            if (this.lifetime - this.lifetimeRemaining <= var8.colourBlendDuration) {
+                int var9 = var8.colourRateRed * arg1 + (this.colourFraction >> 16 & 0xFF) + (this.colour >> 8 & 0xFF00);
+                int var10 = var8.colourRateGreen * arg1 + (this.colourFraction >> 8 & 0xFF) + (this.colour & 0xFF00);
+                int var11 = var8.colourRateBlue * arg1 + ((this.colour & 0xFF) << 8) + (this.colourFraction & 0xFF);
                 if (var9 < 0) {
                     var9 = 0;
                 } else if (var9 > 65535) {
@@ -113,48 +113,48 @@ public class MovingParticle extends Particle {
                 } else if (var11 > 65535) {
                     var11 = 65535;
                 }
-                this.field10144 &= 0xFF000000;
-                this.field10144 |= (var11 >> 8 & 0xFF) + ((var9 & 0xFF00) << 8) + (var10 & 0xFF00);
-                this.field10559 &= 0xFF000000;
-                this.field10559 |= (var11 & 0xFF) + ((var9 & 0xFF) << 16) + ((var10 & 0xFF) << 8);
+                this.colour &= 0xFF000000;
+                this.colour |= (var11 >> 8 & 0xFF) + ((var9 & 0xFF00) << 8) + (var10 & 0xFF00);
+                this.colourFraction &= 0xFF000000;
+                this.colourFraction |= (var11 & 0xFF) + ((var9 & 0xFF) << 16) + ((var10 & 0xFF) << 8);
             }
-            if (this.field10560 - this.field10562 <= var8.field2735) {
-                int var12 = var8.field2739 * arg1 + (this.field10559 >> 24 & 0xFF) + (this.field10144 >> 16 & 0xFF00);
+            if (this.lifetime - this.lifetimeRemaining <= var8.alphaBlendDuration) {
+                int var12 = var8.colourRateAlpha * arg1 + (this.colourFraction >> 24 & 0xFF) + (this.colour >> 16 & 0xFF00);
                 if (var12 < 0) {
                     var12 = 0;
                 } else if (var12 > 65535) {
                     var12 = 65535;
                 }
-                this.field10144 &= 0xFFFFFF;
-                this.field10144 |= (var12 & 0xFF00) << 16;
-                this.field10559 &= 0xFFFFFF;
-                this.field10559 |= (var12 & 0xFF) << 24;
+                this.colour &= 0xFFFFFF;
+                this.colour |= (var12 & 0xFF00) << 16;
+                this.colourFraction &= 0xFFFFFF;
+                this.colourFraction |= (var12 & 0xFF) << 24;
             }
         }
-        if (var8.field2685 != -1 && this.field10560 - this.field10562 <= var8.field2740) {
-            this.field10563 += var8.field2741 * arg1;
+        if (var8.speedTarget != -1 && this.lifetime - this.lifetimeRemaining <= var8.speedBlendDuration) {
+            this.speed += var8.speedRate * arg1;
         }
-        if (var8.field2689 != -1 && this.field10560 - this.field10562 <= var8.field2710) {
-            this.field10148 += var8.field2729 * arg1;
+        if (var8.sizeTarget != -1 && this.lifetime - this.lifetimeRemaining <= var8.sizeBlendDuration) {
+            this.size += var8.sizeRate * arg1;
         }
-        double var13 = (double) this.field10564;
-        double var15 = (double) this.field10565;
-        double var17 = (double) this.field10566;
+        double var13 = (double) this.velX;
+        double var15 = (double) this.velY;
+        double var17 = (double) this.velZ;
         boolean var19 = false;
-        if (var8.field2683 == 1) {
-            int var20 = var4 - this.field10561.field4908.field4956;
-            int var21 = var5 - this.field10561.field4908.field4957;
-            int var22 = var6 - this.field10561.field4908.field4958;
+        if (var8.dragMode == 1) {
+            int var20 = var4 - this.emitter.current.centroidX;
+            int var21 = var5 - this.emitter.current.centroidY;
+            int var22 = var6 - this.emitter.current.centroidZ;
             int var23 = (int) Math.sqrt((double) (var22 * var22 + var20 * var20 + var21 * var21)) >> 2;
-            long var24 = (long) (var8.field2684 * var23 * arg1);
-            this.field10563 = (int) ((long) this.field10563 - ((long) this.field10563 * var24 >> 18));
-        } else if (var8.field2683 == 2) {
-            int var26 = var4 - this.field10561.field4908.field4956;
-            int var27 = var5 - this.field10561.field4908.field4957;
-            int var28 = var6 - this.field10561.field4908.field4958;
+            long var24 = (long) (var8.dragStrength * var23 * arg1);
+            this.speed = (int) ((long) this.speed - ((long) this.speed * var24 >> 18));
+        } else if (var8.dragMode == 2) {
+            int var26 = var4 - this.emitter.current.centroidX;
+            int var27 = var5 - this.emitter.current.centroidY;
+            int var28 = var6 - this.emitter.current.centroidZ;
             int var29 = var28 * var28 + var26 * var26 + var27 * var27;
-            long var30 = (long) (var8.field2684 * var29 * arg1);
-            this.field10563 = (int) ((long) this.field10563 - ((long) this.field10563 * var30 >> 28));
+            long var30 = (long) (var8.dragStrength * var29 * arg1);
+            this.speed = (int) ((long) this.speed - ((long) this.speed * var30 >> 28));
         }
         if (var8.field2702 != null) {
             Iterator var32 = var7.field4944.iterator();
@@ -204,9 +204,9 @@ public class MovingParticle extends Particle {
                                     var17 += (double) arg1 * var55;
                                     var19 = true;
                                 } else {
-                                    this.field10145 = (int) ((double) this.field10145 + (double) arg1 * var51);
-                                    this.field10146 = (int) ((double) this.field10146 + (double) arg1 * var53);
-                                    this.field10147 = (int) ((double) this.field10147 + (double) arg1 * var55);
+                                    this.posX = (int) ((double) this.posX + (double) arg1 * var51);
+                                    this.posY = (int) ((double) this.posY + (double) arg1 * var53);
+                                    this.posZ = (int) ((double) this.posZ + (double) arg1 * var55);
                                 }
                             } else if (var34.field2767 == 0) {
                                 var13 += ((double) var33.field9604 - var49) * (double) arg1;
@@ -214,9 +214,9 @@ public class MovingParticle extends Particle {
                                 var17 += ((double) var33.field9605 - var49) * (double) arg1;
                                 var19 = true;
                             } else {
-                                this.field10145 = (int) ((double) this.field10145 + ((double) var33.field9604 - var49) * (double) arg1);
-                                this.field10146 = (int) ((double) this.field10146 + ((double) var34.field2763 - var49) * (double) arg1);
-                                this.field10147 = (int) ((double) this.field10147 + ((double) var33.field9605 - var49) * (double) arg1);
+                                this.posX = (int) ((double) this.posX + ((double) var33.field9604 - var49) * (double) arg1);
+                                this.posY = (int) ((double) this.posY + ((double) var34.field2763 - var49) * (double) arg1);
+                                this.posZ = (int) ((double) this.posZ + ((double) var33.field9605 - var49) * (double) arg1);
                             }
                         }
                     }
@@ -259,9 +259,9 @@ public class MovingParticle extends Particle {
                                     var17 += (double) arg1 * var78;
                                     var19 = true;
                                 } else {
-                                    this.field10145 = (int) ((double) this.field10145 + (double) arg1 * var74);
-                                    this.field10146 = (int) ((double) this.field10146 + (double) arg1 * var76);
-                                    this.field10147 = (int) ((double) this.field10147 + (double) arg1 * var78);
+                                    this.posX = (int) ((double) this.posX + (double) arg1 * var74);
+                                    this.posY = (int) ((double) this.posY + (double) arg1 * var76);
+                                    this.posZ = (int) ((double) this.posZ + (double) arg1 * var78);
                                 }
                             } else if (var59.field2767 == 0) {
                                 var13 += ((double) var58.field9604 - var72) * (double) arg1;
@@ -269,9 +269,9 @@ public class MovingParticle extends Particle {
                                 var17 += ((double) var58.field9605 - var72) * (double) arg1;
                                 var19 = true;
                             } else {
-                                this.field10145 = (int) ((double) this.field10145 + ((double) var58.field9604 - var72) * (double) arg1);
-                                this.field10146 = (int) ((double) this.field10146 + ((double) var59.field2763 - var72) * (double) arg1);
-                                this.field10147 = (int) ((double) this.field10147 + ((double) var58.field9605 - var72) * (double) arg1);
+                                this.posX = (int) ((double) this.posX + ((double) var58.field9604 - var72) * (double) arg1);
+                                this.posY = (int) ((double) this.posY + ((double) var59.field2763 - var72) * (double) arg1);
+                                this.posZ = (int) ((double) this.posZ + ((double) var58.field9605 - var72) * (double) arg1);
                             }
                             var58 = (ParticleEffector) ParticleSystemRenderer.field4924.nextWithKey();
                         }
@@ -295,42 +295,42 @@ public class MovingParticle extends Particle {
                     var17 += var82.field2765 * arg1;
                     var19 = true;
                 } else {
-                    this.field10145 += var82.field2754 * arg1;
-                    this.field10146 += var82.field2763 * arg1;
-                    this.field10147 += var82.field2765 * arg1;
+                    this.posX += var82.field2754 * arg1;
+                    this.posY += var82.field2763 * arg1;
+                    this.posZ += var82.field2765 * arg1;
                 }
             }
         }
         if (var19) {
             while (true) {
                 if (!(var13 > 32767.0D) && !(var15 > 32767.0D) && !(var17 > 32767.0D) && !(var13 < -32767.0D) && !(var15 < -32767.0D) && !(var17 < -32767.0D)) {
-                    this.field10564 = (short) var13;
-                    this.field10565 = (short) var15;
-                    this.field10566 = (short) var17;
+                    this.velX = (short) var13;
+                    this.velY = (short) var15;
+                    this.velZ = (short) var17;
                     break;
                 }
                 var13 /= 2.0D;
                 var15 /= 2.0D;
                 var17 /= 2.0D;
-                this.field10563 <<= 0x1;
+                this.speed <<= 0x1;
             }
         }
-        this.field10145 = (int) ((long) this.field10145 + ((long) (this.field10563 << 2) * (long) this.field10564 >> 23) * (long) arg1);
-        this.field10146 = (int) ((long) this.field10146 + ((long) (this.field10563 << 2) * (long) this.field10565 >> 23) * (long) arg1);
-        this.field10147 = (int) ((long) this.field10147 + ((long) (this.field10563 << 2) * (long) this.field10566 >> 23) * (long) arg1);
+        this.posX = (int) ((long) this.posX + ((long) (this.speed << 2) * (long) this.velX >> 23) * (long) arg1);
+        this.posY = (int) ((long) this.posY + ((long) (this.speed << 2) * (long) this.velY >> 23) * (long) arg1);
+        this.posZ = (int) ((long) this.posZ + ((long) (this.speed << 2) * (long) this.velZ >> 23) * (long) arg1);
     }
 
     @ObfuscatedName("akp.l(Loo;Lra;J)V")
     public void method16987(Scene arg0, RendererToolkit arg1, long arg2) {
-        int var5 = this.field10145 >> arg0.field4510 + 12;
-        int var6 = this.field10147 >> arg0.field4510 + 12;
-        int var7 = this.field10146 >> 12;
+        int var5 = this.posX >> arg0.field4510 + 12;
+        int var6 = this.posZ >> arg0.field4510 + 12;
+        int var7 = this.posY >> 12;
         if (var7 > 262144 || var7 < -262144 || var5 < 0 || var5 >= arg0.field4495 || var6 < 0 || var6 >= arg0.field4496) {
             this.method16977();
             return;
         }
-        ParticleSystem var8 = this.field10561.field4902;
-        ParticleEmitterType var9 = this.field10561.field4901;
+        ParticleSystem var8 = this.emitter.system;
+        ParticleEmitterType var9 = this.emitter.type;
         FloorModel[] var10 = arg0.field4498;
         int var11 = var8.field4943;
         Tile var12 = arg0.field4497[var8.field4943][var5][var6];
@@ -344,20 +344,20 @@ public class MovingParticle extends Particle {
         } else {
             var14 = var13 - (0x8 << arg0.field4510);
         }
-        if (var9.field2721) {
-            if (var9.field2707 == -1 && var7 > var13) {
+        if (var9.hasFloorClamp) {
+            if (var9.killAboveLevel == -1 && var7 > var13) {
                 this.method16977();
                 return;
             }
-            if (var9.field2707 >= 0 && var7 > var10[var9.field2707].method199(var5, var6)) {
+            if (var9.killAboveLevel >= 0 && var7 > var10[var9.killAboveLevel].method199(var5, var6)) {
                 this.method16977();
                 return;
             }
-            if (var9.field2708 == -1 && var7 < var14) {
+            if (var9.killBelowLevel == -1 && var7 < var14) {
                 this.method16977();
                 return;
             }
-            if (var9.field2708 >= 0 && var7 < var10[var9.field2708 + 1].method199(var5, var6)) {
+            if (var9.killBelowLevel >= 0 && var7 < var10[var9.killBelowLevel + 1].method199(var5, var6)) {
                 this.method16977();
                 return;
             }
@@ -365,7 +365,7 @@ public class MovingParticle extends Particle {
         int var15;
         for (var15 = arg0.field4494 - 1; var15 > 0 && var7 > var10[var15].method199(var5, var6); var15--) {
         }
-        if (var9.field2701 && var15 == 0 && var7 > var10[0].method199(var5, var6)) {
+        if (var9.killOnGroundContact && var15 == 0 && var7 > var10[0].method199(var5, var6)) {
             this.method16977();
         } else if (arg0.field4494 - 1 == var15 && var10[var15].method199(var5, var6) - var7 > 0x8 << arg0.field4510) {
             this.method16977();
@@ -389,9 +389,9 @@ public class MovingParticle extends Particle {
                     }
                 }
             }
-            if (var9.field2719) {
-                int var19 = this.field10145 >> 12;
-                int var20 = this.field10147 >> 12;
+            if (var9.collidesWithEntities) {
+                int var19 = this.posX >> 12;
+                int var20 = this.posZ >> 12;
                 if (var16.field4548 != null) {
                     EntityBounds var21 = var16.field4548.method12810(arg1);
                     if (var21 != null && var21.method7645(var19, var7, var20)) {
@@ -427,7 +427,7 @@ public class MovingParticle extends Particle {
 
     @ObfuscatedName("akp.f()V")
     public void method16977() {
-        this.field10561.field4902.field4933[this.field10558] = null;
+        this.emitter.system.field4933[this.ringIndex] = null;
         Statics.field4919[ParticleSystemRenderer.field4921] = this;
         ParticleSystemRenderer.field4921 = ParticleSystemRenderer.field4921 + 1 & 0x3FF;
         this.method6975();

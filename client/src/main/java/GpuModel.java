@@ -2920,15 +2920,15 @@ public class GpuModel extends Model {
                 if (var4.field1372 != null) {
                     var5 = var4.field1372;
                 }
-                var5.field1378 = (int) (var2.entries[8] * (float) this.field7934[var4.field1374] + var2.entries[0] * (float) this.field7932[var4.field1374] + var2.entries[4] * (float) this.field7931[var4.field1374] + var2.entries[12]);
-                var5.field1379 = (int) (var2.entries[9] * (float) this.field7934[var4.field1374] + var2.entries[1] * (float) this.field7932[var4.field1374] + var2.entries[5] * (float) this.field7931[var4.field1374] + var2.entries[13]);
-                var5.field1380 = (int) (var2.entries[10] * (float) this.field7934[var4.field1374] + var2.entries[2] * (float) this.field7932[var4.field1374] + var2.entries[6] * (float) this.field7931[var4.field1374] + var2.entries[14]);
-                var5.field1381 = (int) (var2.entries[8] * (float) this.field7934[var4.field1375] + var2.entries[0] * (float) this.field7932[var4.field1375] + var2.entries[4] * (float) this.field7931[var4.field1375] + var2.entries[12]);
-                var5.field1377 = (int) (var2.entries[9] * (float) this.field7934[var4.field1375] + var2.entries[1] * (float) this.field7932[var4.field1375] + var2.entries[5] * (float) this.field7931[var4.field1375] + var2.entries[13]);
-                var5.field1373 = (int) (var2.entries[10] * (float) this.field7934[var4.field1375] + var2.entries[2] * (float) this.field7932[var4.field1375] + var2.entries[6] * (float) this.field7931[var4.field1375] + var2.entries[14]);
-                var5.field1384 = (int) (var2.entries[8] * (float) this.field7934[var4.field1376] + var2.entries[0] * (float) this.field7932[var4.field1376] + var2.entries[4] * (float) this.field7931[var4.field1376] + var2.entries[12]);
-                var5.field1385 = (int) (var2.entries[9] * (float) this.field7934[var4.field1376] + var2.entries[1] * (float) this.field7932[var4.field1376] + var2.entries[5] * (float) this.field7931[var4.field1376] + var2.entries[13]);
-                var5.field1386 = (int) (var2.entries[10] * (float) this.field7934[var4.field1376] + var2.entries[2] * (float) this.field7932[var4.field1376] + var2.entries[6] * (float) this.field7931[var4.field1376] + var2.entries[14]);
+                var5.x1 = (int) (var2.entries[8] * (float) this.field7934[var4.vertexA] + var2.entries[0] * (float) this.field7932[var4.vertexA] + var2.entries[4] * (float) this.field7931[var4.vertexA] + var2.entries[12]);
+                var5.y1 = (int) (var2.entries[9] * (float) this.field7934[var4.vertexA] + var2.entries[1] * (float) this.field7932[var4.vertexA] + var2.entries[5] * (float) this.field7931[var4.vertexA] + var2.entries[13]);
+                var5.z1 = (int) (var2.entries[10] * (float) this.field7934[var4.vertexA] + var2.entries[2] * (float) this.field7932[var4.vertexA] + var2.entries[6] * (float) this.field7931[var4.vertexA] + var2.entries[14]);
+                var5.x2 = (int) (var2.entries[8] * (float) this.field7934[var4.vertexB] + var2.entries[0] * (float) this.field7932[var4.vertexB] + var2.entries[4] * (float) this.field7931[var4.vertexB] + var2.entries[12]);
+                var5.y2 = (int) (var2.entries[9] * (float) this.field7934[var4.vertexB] + var2.entries[1] * (float) this.field7932[var4.vertexB] + var2.entries[5] * (float) this.field7931[var4.vertexB] + var2.entries[13]);
+                var5.z2 = (int) (var2.entries[10] * (float) this.field7934[var4.vertexB] + var2.entries[2] * (float) this.field7932[var4.vertexB] + var2.entries[6] * (float) this.field7931[var4.vertexB] + var2.entries[14]);
+                var5.x3 = (int) (var2.entries[8] * (float) this.field7934[var4.vertexC] + var2.entries[0] * (float) this.field7932[var4.vertexC] + var2.entries[4] * (float) this.field7931[var4.vertexC] + var2.entries[12]);
+                var5.y3 = (int) (var2.entries[9] * (float) this.field7934[var4.vertexC] + var2.entries[1] * (float) this.field7932[var4.vertexC] + var2.entries[5] * (float) this.field7931[var4.vertexC] + var2.entries[13]);
+                var5.z3 = (int) (var2.entries[10] * (float) this.field7934[var4.vertexC] + var2.entries[2] * (float) this.field7932[var4.vertexC] + var2.entries[6] * (float) this.field7931[var4.vertexC] + var2.entries[14]);
             }
         }
         if (this.field7981 == null) {

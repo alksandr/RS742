@@ -111,7 +111,7 @@ public class GpuParticleRenderer {
         DualLink var10 = arg1.field1311.field6653;
         for (DualLink var11 = var10.field9265; var11 != var10; var11 = var11.field9265) {
             Particle var12 = (Particle) var11;
-            int var13 = (int) ((float) (var12.field10147 >> 12) * var5 + (float) (var12.field10146 >> 12) * var4 + (float) (var12.field10145 >> 12) * var3 + var6);
+            int var13 = (int) ((float) (var12.posZ >> 12) * var5 + (float) (var12.posY >> 12) * var4 + (float) (var12.posX >> 12) * var3 + var6);
             if (var13 > var9) {
                 var9 = var13;
             }
@@ -159,11 +159,11 @@ public class GpuParticleRenderer {
             while (arg1 != var7) {
                 Particle var14 = (Particle) var7;
                 if (var11) {
-                    var9 = var14.field10149;
+                    var9 = var14.spriteId;
                     var10 = var14.field10150;
                     var11 = false;
                 }
-                if (var8 > 0 && (var14.field10149 != var9 || var14.field10150 != var10)) {
+                if (var8 > 0 && (var14.spriteId != var9 || var14.field10150 != var10)) {
                     var11 = true;
                     break;
                 }
@@ -224,7 +224,7 @@ public class GpuParticleRenderer {
             if (var22 > 0) {
                 for (int var23 = var22 - 1; var23 >= 0; var23--) {
                     Particle var24 = this.field2515[var21][var23];
-                    int var25 = var24.field10144;
+                    int var25 = var24.colour;
                     byte var26 = (byte) (var25 >> 16);
                     byte var27 = (byte) (var25 >> 8);
                     byte var28 = (byte) var25;
@@ -234,10 +234,10 @@ public class GpuParticleRenderer {
                         var26 = var28;
                         var28 = var30;
                     }
-                    float var31 = (float) (var24.field10145 >> 12);
-                    float var32 = (float) (var24.field10146 >> 12);
-                    float var33 = (float) (var24.field10147 >> 12);
-                    int var34 = var24.field10148 >> 12;
+                    float var31 = (float) (var24.posX >> 12);
+                    float var32 = (float) (var24.posY >> 12);
+                    float var33 = (float) (var24.posZ >> 12);
+                    int var34 = var24.size >> 12;
                     var20.putFloat((float) -var34 * var11 + var31);
                     var20.putFloat((float) -var34 * var12 + var32);
                     var20.putFloat((float) -var34 * var13 + var33);
@@ -280,7 +280,7 @@ public class GpuParticleRenderer {
                     int var35 = this.field2513[var21] - 64 - 1;
                     for (int var36 = this.field2510[var35] - 1; var36 >= 0; var36--) {
                         Particle var37 = this.field2512[var35][var36];
-                        int var38 = var37.field10144;
+                        int var38 = var37.colour;
                         byte var39 = (byte) (var38 >> 16);
                         byte var40 = (byte) (var38 >> 8);
                         byte var41 = (byte) var38;
@@ -290,10 +290,10 @@ public class GpuParticleRenderer {
                             var39 = var41;
                             var41 = var43;
                         }
-                        float var44 = (float) (var37.field10145 >> 12);
-                        float var45 = (float) (var37.field10146 >> 12);
-                        float var46 = (float) (var37.field10147 >> 12);
-                        int var47 = var37.field10148 >> 12;
+                        float var44 = (float) (var37.posX >> 12);
+                        float var45 = (float) (var37.posY >> 12);
+                        float var46 = (float) (var37.posZ >> 12);
+                        int var47 = var37.size >> 12;
                         var20.putFloat((float) -var47 * var11 + var44);
                         var20.putFloat((float) -var47 * var12 + var45);
                         var20.putFloat((float) -var47 * var13 + var46);

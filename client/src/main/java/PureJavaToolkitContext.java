@@ -22,16 +22,16 @@ public class PureJavaToolkitContext {
     public int fadeColour = 0;
 
     @ObfuscatedName("ak.l")
-    public int field870 = 0;
+    public int savedFadeColour = 0;
 
     @ObfuscatedName("ak.f")
-    public boolean field871 = false;
+    public boolean fogEnabled = false;
 
     @ObfuscatedName("ak.d")
-    public int field872 = 0;
+    public int fogStartHeight = 0;
 
     @ObfuscatedName("ak.z")
-    public int field873 = 0;
+    public int fogEndHeight = 0;
 
     @ObfuscatedName("ak.n")
     public boolean field874 = true;

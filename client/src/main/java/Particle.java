@@ -4,22 +4,22 @@ import deob.ObfuscatedName;
 public class Particle extends DualLink {
 
     @ObfuscatedName("ahl.t")
-    public int field10144;
+    public int colour;
 
     @ObfuscatedName("ahl.l")
-    public int field10145;
+    public int posX;
 
     @ObfuscatedName("ahl.f")
-    public int field10146;
+    public int posY;
 
     @ObfuscatedName("ahl.d")
-    public int field10147;
+    public int posZ;
 
     @ObfuscatedName("ahl.z")
-    public int field10148;
+    public int size;
 
     @ObfuscatedName("ahl.n")
-    public int field10149;
+    public int spriteId;
 
     @ObfuscatedName("ahl.o")
     public boolean field10150;

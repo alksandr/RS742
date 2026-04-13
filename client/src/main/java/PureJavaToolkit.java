@@ -2072,9 +2072,9 @@ public class PureJavaToolkit extends RendererToolkit {
     public void method13207(boolean arg0, boolean arg1, boolean arg2, ParticleList arg3) {
         PureJavaToolkitContext var5 = this.getContext(Thread.currentThread());
         for (Particle var6 = (Particle) arg3.field1311.method11670(); var6 != null; var6 = (Particle) arg3.field1311.method11671()) {
-            int var7 = var6.field10145 >> 12;
-            int var8 = var6.field10146 >> 12;
-            int var9 = var6.field10147 >> 12;
+            int var7 = var6.posX >> 12;
+            int var8 = var6.posY >> 12;
+            int var9 = var6.posZ >> 12;
             float var10 = this.field8018.entries[10] * (float) var9 + this.field8018.entries[2] * (float) var7 + this.field8018.entries[6] * (float) var8 + this.field8018.entries[14];
             float var11 = this.field8018.entries[11] * (float) var9 + this.field8018.entries[3] * (float) var7 + this.field8018.entries[7] * (float) var8 + this.field8018.entries[15];
             if (!(var10 < -var11)) {
@@ -2083,7 +2083,7 @@ public class PureJavaToolkit extends RendererToolkit {
                     float var13 = this.field8018.entries[8] * (float) var9 + this.field8018.entries[4] * (float) var8 + this.field8018.entries[0] * (float) var7 + this.field8018.entries[12];
                     float var14 = this.field8018.entries[9] * (float) var9 + this.field8018.entries[1] * (float) var7 + this.field8018.entries[5] * (float) var8 + this.field8018.entries[13];
                     if (!(var13 < -var11) && !(var13 > var11) && !(var14 < -var11) && !(var14 > var11)) {
-                        float var15 = (float) var6.field10148 / 4096.0F;
+                        float var15 = (float) var6.size / 4096.0F;
                         float var16 = this.field8017.entries[0] * var15 + var13;
                         float var17 = this.field8017.entries[3] * var15 + var11;
                         float var18 = this.field8011 * var13 / var11 + this.field8007;
@@ -2098,10 +2098,10 @@ public class PureJavaToolkit extends RendererToolkit {
 
     @ObfuscatedName("yt.ow(ZZZLahl;IIFI)V")
     public void method13208(boolean arg0, boolean arg1, boolean arg2, Particle arg3, int arg4, int arg5, float arg6, int arg7) {
-        int var9 = arg3.field10149;
+        int var9 = arg3.spriteId;
         int var11 = arg7 << 1;
         if (var9 == -1) {
-            this.method13210(arg1, arg4, arg5, arg6, arg7, arg3.field10144, 1);
+            this.method13210(arg1, arg4, arg5, arg6, arg7, arg3.colour, 1);
             return;
         }
         if (this.field8035 != var9) {
@@ -2119,7 +2119,7 @@ public class PureJavaToolkit extends RendererToolkit {
             this.field8034 = var12;
         }
         var11++;
-        ((PureJavaSprite) this.field8034).method12923(arg0, arg1, arg2, arg4 - arg7, arg5 - arg7, arg6, var11, var11, 0, arg3.field10144, 1, 1, false);
+        ((PureJavaSprite) this.field8034).method12923(arg0, arg1, arg2, arg4 - arg7, arg5 - arg7, arg6, var11, var11, 0, arg3.colour, 1, 1, false);
     }
 
     @ObfuscatedName("yt.oi(ZZZIIFIIIIII)V")
@@ -2491,27 +2491,27 @@ public class PureJavaToolkit extends RendererToolkit {
     @ObfuscatedName("yt.dw(ILdk;)V")
     public void method503(int arg0, WaterFogData arg1) {
         for (int var3 = 0; var3 < this.field8031.length; var3++) {
-            this.field8031[var3].field870 = this.field8031[var3].fadeColour;
-            this.field8031[var3].field872 = arg0;
+            this.field8031[var3].savedFadeColour = this.field8031[var3].fadeColour;
+            this.field8031[var3].fogStartHeight = arg0;
             this.field8031[var3].fadeColour = arg1.colour;
-            this.field8031[var3].field873 = arg1.scale;
-            this.field8031[var3].field871 = true;
+            this.field8031[var3].fogEndHeight = arg1.scale;
+            this.field8031[var3].fogEnabled = true;
         }
     }
 
     @ObfuscatedName("yt.di(ILdk;)V")
     public void setWaterFog(int arg0, WaterFogData arg1) {
         PureJavaToolkitContext var3 = this.getContext(Thread.currentThread());
-        var3.field872 = arg0;
+        var3.fogStartHeight = arg0;
         var3.fadeColour = arg1.colour;
-        var3.field873 = arg1.scale;
+        var3.fogEndHeight = arg1.scale;
     }
 
     @ObfuscatedName("yt.O()V")
     public void O() {
         for (int var1 = 0; var1 < this.field8031.length; var1++) {
-            this.field8031[var1].fadeColour = this.field8031[var1].field870;
-            this.field8031[var1].field871 = false;
+            this.field8031[var1].fadeColour = this.field8031[var1].savedFadeColour;
+            this.field8031[var1].fogEnabled = false;
         }
     }
 

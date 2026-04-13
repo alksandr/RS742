@@ -774,11 +774,11 @@ public class PureJavaFloorModel extends FloorModel {
         PureJavaToolkitContext var4 = this.field7658.getContext(Thread.currentThread());
         var4.rasteriser.field987 = 0;
         if (this.field7673 != null) {
-            this.method12950(arg0, arg1, var4.field871, var4, var4.rasteriser, var4.field903, var4.field904, var4.field905, var4.field863, var4.field907, arg2);
+            this.method12950(arg0, arg1, var4.fogEnabled, var4, var4.rasteriser, var4.field903, var4.field904, var4.field905, var4.field863, var4.field907, arg2);
         } else if (this.field7660 != null) {
             this.method12972(arg0, arg1, var4.rasteriser, var4.field903, var4.field904, var4.field905, var4.field863, var4.field907, arg2);
         } else if (this.field7664 != null) {
-            this.method12951(arg0, arg1, var4.field871, var4, var4.rasteriser, var4.field903, var4.field904, var4.field905, var4.field863, var4.field907, arg2);
+            this.method12951(arg0, arg1, var4.fogEnabled, var4, var4.rasteriser, var4.field903, var4.field904, var4.field905, var4.field863, var4.field907, arg2);
         }
     }
 
