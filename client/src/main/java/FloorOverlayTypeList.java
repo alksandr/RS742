@@ -4,72 +4,72 @@ import deob.ObfuscatedName;
 public class FloorOverlayTypeList {
 
     @ObfuscatedName("rd.u")
-    public final Js5 field5106;
+    public final Js5 js5;
 
     @ObfuscatedName("rd.j")
-    public int field5105;
+    public int capacity;
 
     @ObfuscatedName("rd.a")
-    public final SoftLruHashTable field5107 = new SoftLruHashTable(64);
+    public final SoftLruHashTable cache = new SoftLruHashTable(64);
 
     @ObfuscatedName("rd.s")
     public int field5108 = 0;
 
     public FloorOverlayTypeList(ModeGame arg0, Language arg1, Js5 arg2) {
-        this.field5106 = arg2;
-        this.field5105 = this.field5106.getGroupCapacity(Js5ConfigGroup.FLOTYPE.field1668);
+        this.js5 = arg2;
+        this.capacity = this.js5.getGroupCapacity(Js5ConfigGroup.FLOTYPE.field1668);
     }
 
     @ObfuscatedName("rd.u(IS)Lry;")
-    public FloorOverlayType method8503(int arg0) {
-        SoftLruHashTable var2 = this.field5107;
+    public FloorOverlayType get(int arg0) {
+        SoftLruHashTable var2 = this.cache;
         FloorOverlayType var3;
-        synchronized (this.field5107) {
-            var3 = (FloorOverlayType) this.field5107.get((long) arg0);
+        synchronized (this.cache) {
+            var3 = (FloorOverlayType) this.cache.get((long) arg0);
         }
         if (var3 != null) {
             return var3;
         }
-        Js5 var5 = this.field5106;
+        Js5 var5 = this.js5;
         byte[] var6;
-        synchronized (this.field5106) {
-            var6 = this.field5106.fetchFile(Js5ConfigGroup.FLOTYPE.field1668, arg0);
+        synchronized (this.js5) {
+            var6 = this.js5.fetchFile(Js5ConfigGroup.FLOTYPE.field1668, arg0);
         }
         FloorOverlayType var8 = new FloorOverlayType();
-        var8.field5088 = this;
-        var8.field5089 = arg0;
+        var8.typeList = this;
+        var8.id = arg0;
         if (var6 != null) {
-            var8.method8494(new Packet(var6));
+            var8.decode(new Packet(var6));
         }
-        var8.method8489();
-        SoftLruHashTable var9 = this.field5107;
-        synchronized (this.field5107) {
-            this.field5107.method7937(var8, (long) arg0);
+        var8.postDecode();
+        SoftLruHashTable var9 = this.cache;
+        synchronized (this.cache) {
+            this.cache.method7937(var8, (long) arg0);
             return var8;
         }
     }
 
     @ObfuscatedName("rd.j(I)V")
-    public void method8500() {
-        SoftLruHashTable var1 = this.field5107;
-        synchronized (this.field5107) {
-            this.field5107.method7922();
+    public void clear() {
+        SoftLruHashTable var1 = this.cache;
+        synchronized (this.cache) {
+            this.cache.method7922();
         }
     }
 
     @ObfuscatedName("rd.a(IB)V")
     public void method8501(int arg0) {
-        SoftLruHashTable var2 = this.field5107;
-        synchronized (this.field5107) {
-            this.field5107.method7921(arg0);
+        SoftLruHashTable var2 = this.cache;
+        synchronized (this.cache) {
+            this.cache.method7921(arg0);
         }
     }
 
     @ObfuscatedName("rd.s(I)V")
-    public void method8502() {
-        SoftLruHashTable var1 = this.field5107;
-        synchronized (this.field5107) {
-            this.field5107.removeSoft();
+    public void removeSoft() {
+        SoftLruHashTable var1 = this.cache;
+        synchronized (this.cache) {
+            this.cache.removeSoft();
         }
     }
 }

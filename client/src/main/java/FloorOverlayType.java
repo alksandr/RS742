@@ -4,31 +4,31 @@ import deob.ObfuscatedName;
 public class FloorOverlayType {
 
     @ObfuscatedName("ry.j")
-    public FloorOverlayTypeList field5088;
+    public FloorOverlayTypeList typeList;
 
     @ObfuscatedName("ry.a")
-    public int field5089;
+    public int id;
 
     @ObfuscatedName("ry.s")
-    public int field5094 = 0;
+    public int rgb = 0;
 
     @ObfuscatedName("ry.c")
-    public int field5092 = -1;
+    public int textureId = -1;
 
     @ObfuscatedName("ry.m")
-    public boolean field5103 = true;
+    public boolean hideUnderlay = true;
 
     @ObfuscatedName("ry.t")
-    public int field5091 = -1;
+    public int secondaryRgb = -1;
 
     @ObfuscatedName("ry.l")
-    public int field5087 = 512;
+    public int hueMultiplier = 512;
 
     @ObfuscatedName("ry.f")
-    public boolean field5095 = true;
+    public boolean blendable = true;
 
     @ObfuscatedName("ry.d")
-    public int field5096 = 8;
+    public int priority = 8;
 
     @ObfuscatedName("ry.z")
     public boolean field5097 = false;
@@ -52,39 +52,39 @@ public class FloorOverlayType {
     public int field5098 = 64;
 
     @ObfuscatedName("ry.u(Laet;I)V")
-    public void method8494(Packet arg0) {
+    public void decode(Packet arg0) {
         while (true) {
             int var2 = arg0.g1();
             if (var2 == 0) {
                 return;
             }
-            this.method8488(arg0, var2);
+            this.decodeOpcode(arg0, var2);
         }
     }
 
     @ObfuscatedName("ry.j(Laet;II)V")
-    public void method8488(Packet arg0, int arg1) {
+    public void decodeOpcode(Packet arg0, int arg1) {
         if (arg1 == 1) {
-            this.field5094 = method5934(arg0.g3());
+            this.rgb = rgbToHsl16(arg0.g3());
         } else if (arg1 == 2) {
-            this.field5092 = arg0.g1();
+            this.textureId = arg0.g1();
         } else if (arg1 == 3) {
-            this.field5092 = arg0.g2();
-            if (this.field5092 == 65535) {
-                this.field5092 = -1;
+            this.textureId = arg0.g2();
+            if (this.textureId == 65535) {
+                this.textureId = -1;
             }
         } else if (arg1 == 5) {
-            this.field5103 = false;
+            this.hideUnderlay = false;
         } else if (arg1 == 7) {
-            this.field5091 = method5934(arg0.g3());
+            this.secondaryRgb = rgbToHsl16(arg0.g3());
         } else if (arg1 == 8) {
-            this.field5088.field5108 = this.field5089;
+            this.typeList.field5108 = this.id;
         } else if (arg1 == 9) {
-            this.field5087 = arg0.g2() << 2;
+            this.hueMultiplier = arg0.g2() << 2;
         } else if (arg1 == 10) {
-            this.field5095 = false;
+            this.blendable = false;
         } else if (arg1 == 11) {
-            this.field5096 = arg0.g1();
+            this.priority = arg0.g1();
         } else if (arg1 == 12) {
             this.field5097 = true;
         } else if (arg1 == 13) {
@@ -103,12 +103,12 @@ public class FloorOverlayType {
     }
 
     @ObfuscatedName("ry.a(B)V")
-    public void method8489() {
-        this.field5096 = this.field5096 << 8 | this.field5089;
+    public void postDecode() {
+        this.priority = this.priority << 8 | this.id;
     }
 
     @ObfuscatedName("lt.s(IB)I")
-    public static int method5934(int arg0) {
+    public static int rgbToHsl16(int arg0) {
         return arg0 == 16711935 ? -1 : ColourUtils.method16884(arg0);
     }
 }

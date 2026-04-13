@@ -4,64 +4,64 @@ import deob.ObfuscatedName;
 public class FloorUnderlayType {
 
     @ObfuscatedName("uc.u")
-    public int field6716 = 0;
+    public int rgb = 0;
 
     @ObfuscatedName("uc.j")
-    public int field6713 = -1;
+    public int textureId = -1;
 
     @ObfuscatedName("uc.a")
-    public int field6715 = 512;
+    public int hueMultiplier = 512;
 
     @ObfuscatedName("uc.s")
     public boolean field6719 = true;
 
     @ObfuscatedName("uc.c")
-    public boolean field6717 = true;
+    public boolean blendable = true;
 
     @ObfuscatedName("uc.m")
-    public int field6718;
+    public int hue;
 
     @ObfuscatedName("uc.t")
-    public int field6714;
+    public int saturation;
 
     @ObfuscatedName("uc.l")
-    public int field6720;
+    public int lightness;
 
     @ObfuscatedName("uc.f")
-    public int field6721;
+    public int chromaWeight;
 
     @ObfuscatedName("uc.u(Laet;B)V")
-    public void method11909(Packet arg0) {
+    public void decode(Packet arg0) {
         while (true) {
             int var2 = arg0.g1();
             if (var2 == 0) {
                 return;
             }
-            this.method11918(arg0, var2);
+            this.decodeOpcode(arg0, var2);
         }
     }
 
     @ObfuscatedName("uc.j(Laet;II)V")
-    public void method11918(Packet arg0, int arg1) {
+    public void decodeOpcode(Packet arg0, int arg1) {
         if (arg1 == 1) {
-            this.field6716 = arg0.g3();
-            this.method11916(this.field6716);
+            this.rgb = arg0.g3();
+            this.calculateHsl(this.rgb);
         } else if (arg1 == 2) {
-            this.field6713 = arg0.g2();
-            if (this.field6713 == 65535) {
-                this.field6713 = -1;
+            this.textureId = arg0.g2();
+            if (this.textureId == 65535) {
+                this.textureId = -1;
             }
         } else if (arg1 == 3) {
-            this.field6715 = arg0.g2() << 2;
+            this.hueMultiplier = arg0.g2() << 2;
         } else if (arg1 == 4) {
             this.field6719 = false;
         } else if (arg1 == 5) {
-            this.field6717 = false;
+            this.blendable = false;
         }
     }
 
     @ObfuscatedName("uc.a(IB)V")
-    public void method11916(int arg0) {
+    public void calculateHsl(int arg0) {
         double var2 = (double) (arg0 >> 16 & 0xFF) / 256.0D;
         double var4 = (double) (arg0 >> 8 & 0xFF) / 256.0D;
         double var6 = (double) (arg0 & 0xFF) / 256.0D;
@@ -98,26 +98,26 @@ public class FloorUnderlayType {
             }
         }
         double var18 = var12 / 6.0D;
-        this.field6714 = (int) (var14 * 256.0D);
-        this.field6720 = (int) (var16 * 256.0D);
-        if (this.field6714 < 0) {
-            this.field6714 = 0;
-        } else if (this.field6714 > 255) {
-            this.field6714 = 255;
+        this.saturation = (int) (var14 * 256.0D);
+        this.lightness = (int) (var16 * 256.0D);
+        if (this.saturation < 0) {
+            this.saturation = 0;
+        } else if (this.saturation > 255) {
+            this.saturation = 255;
         }
-        if (this.field6720 < 0) {
-            this.field6720 = 0;
-        } else if (this.field6720 > 255) {
-            this.field6720 = 255;
+        if (this.lightness < 0) {
+            this.lightness = 0;
+        } else if (this.lightness > 255) {
+            this.lightness = 255;
         }
         if (var16 > 0.5D) {
-            this.field6721 = (int) ((1.0D - var16) * var14 * 512.0D);
+            this.chromaWeight = (int) ((1.0D - var16) * var14 * 512.0D);
         } else {
-            this.field6721 = (int) (var14 * var16 * 512.0D);
+            this.chromaWeight = (int) (var14 * var16 * 512.0D);
         }
-        if (this.field6721 < 1) {
-            this.field6721 = 1;
+        if (this.chromaWeight < 1) {
+            this.chromaWeight = 1;
         }
-        this.field6718 = (int) ((double) this.field6721 * var18);
+        this.hue = (int) ((double) this.chromaWeight * var18);
     }
 }

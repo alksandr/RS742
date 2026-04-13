@@ -2641,8 +2641,8 @@ public final class client extends GameShell {
     @ObfuscatedName("ki.gb(ZI)V")
     public static final void method5025(boolean arg0) {
         if (!arg0) {
-            Statics.floTypes.method8500();
-            Statics.field4450.method11894();
+            Statics.floTypes.clear();
+            Statics.field4450.clear();
             Statics.field7650.method3910();
             world.getLocTypeList().method11479();
             npcTypes.method12558();

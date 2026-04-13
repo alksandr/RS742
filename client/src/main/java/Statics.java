@@ -3192,8 +3192,8 @@ public class Statics {
 
     @ObfuscatedName("lh.gl(I)V")
     public static final void method5715() {
-        floTypes.method8502();
-        field4450.method11899();
+        floTypes.removeSoft();
+        field4450.removeSoft();
         field7650.method3917();
         client.world.getLocTypeList().method11477();
         client.npcTypes.method12555();

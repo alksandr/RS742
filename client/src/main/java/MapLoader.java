@@ -584,11 +584,11 @@ public class MapLoader {
                     if (var9 < this.field3627) {
                         int var10 = this.field3635[var5][var9][var8] & 0xFF;
                         if (var10 > 0) {
-                            FloorUnderlayType var11 = this.field3668.method11895(var10 - 1);
-                            this.field3634[var8] += var11.field6718;
-                            this.field3639[var8] += var11.field6714;
-                            this.field3640[var8] += var11.field6720;
-                            this.field3641[var8] += var11.field6721;
+                            FloorUnderlayType var11 = this.field3668.get(var10 - 1);
+                            this.field3634[var8] += var11.hue;
+                            this.field3639[var8] += var11.saturation;
+                            this.field3640[var8] += var11.lightness;
+                            this.field3641[var8] += var11.chromaWeight;
                             var10002 = this.field3642[var8]++;
                         }
                     }
@@ -596,11 +596,11 @@ public class MapLoader {
                     if (var12 >= 0) {
                         int var13 = this.field3635[var5][var12][var8] & 0xFF;
                         if (var13 > 0) {
-                            FloorUnderlayType var14 = this.field3668.method11895(var13 - 1);
-                            this.field3634[var8] -= var14.field6718;
-                            this.field3639[var8] -= var14.field6714;
-                            this.field3640[var8] -= var14.field6720;
-                            this.field3641[var8] -= var14.field6721;
+                            FloorUnderlayType var14 = this.field3668.get(var13 - 1);
+                            this.field3634[var8] -= var14.hue;
+                            this.field3639[var8] -= var14.saturation;
+                            this.field3640[var8] -= var14.lightness;
+                            this.field3641[var8] -= var14.chromaWeight;
                             var10002 = this.field3642[var8]--;
                         }
                     }
@@ -665,13 +665,13 @@ public class MapLoader {
                 byte var10 = this.field3621[arg2][var7][var8];
                 int var11 = this.field3636[arg2][var7][var8] & 0xFF;
                 int var12 = this.field3635[arg2][var7][var8] & 0xFF;
-                FloorOverlayType var13 = var11 == 0 ? null : this.floTypes.method8503(var11 - 1);
-                FloorUnderlayType var14 = var12 == 0 ? null : this.field3668.method11895(var12 - 1);
+                FloorOverlayType var13 = var11 == 0 ? null : this.floTypes.get(var11 - 1);
+                FloorUnderlayType var14 = var12 == 0 ? null : this.field3668.get(var12 - 1);
                 if (var9 == 0 && var13 == null) {
                     var9 = 12;
                 }
                 FloorOverlayType var15 = var13;
-                if (var13 != null && var13.field5094 == -1 && var13.field5091 == -1) {
+                if (var13 != null && var13.rgb == -1 && var13.secondaryRgb == -1) {
                     var15 = var13;
                     var13 = null;
                 }
@@ -681,15 +681,15 @@ public class MapLoader {
                     int var16 = (var14 == null ? 0 : this.field3698) + (var13 == null ? 0 : this.field3681);
                     int var17 = 0;
                     this.field3688 = 0;
-                    this.field3691 = var13 == null ? -1 : var13.field5092;
-                    int var18 = var14 == null ? -1 : var14.field6713;
+                    this.field3691 = var13 == null ? -1 : var13.textureId;
+                    int var18 = var14 == null ? -1 : var14.textureId;
                     int[] var19 = new int[var16];
                     int[] var20 = new int[var16];
                     int[] var21 = new int[var16];
                     int[] var22 = new int[var16];
                     int[] var23 = new int[var16];
                     int[] var24 = new int[var16];
-                    int[] var25 = var13 == null || var13.field5091 == -1 ? null : new int[var16];
+                    int[] var25 = var13 == null || var13.secondaryRgb == -1 ? null : new int[var16];
                     if (var13 == null) {
                         this.field3688 += this.field3681;
                     } else {
@@ -698,10 +698,10 @@ public class MapLoader {
                             var20[var17] = field3673[var9][this.field3688];
                             var21[var17] = field3651[var9][this.field3688];
                             var23[var17] = this.field3691;
-                            var24[var17] = var13.field5087;
-                            var22[var17] = var13.field5094;
+                            var24[var17] = var13.hueMultiplier;
+                            var22[var17] = var13.rgb;
                             if (var25 != null) {
-                                var25[var17] = var13.field5091;
+                                var25[var17] = var13.secondaryRgb;
                             }
                             var17++;
                             this.field3688++;
@@ -716,7 +716,7 @@ public class MapLoader {
                             var20[var17] = field3673[var9][this.field3688];
                             var21[var17] = field3651[var9][this.field3688];
                             var23[var17] = var18;
-                            var24[var17] = var14.field6715;
+                            var24[var17] = var14.hueMultiplier;
                             var22[var17] = arg3[var7][var8];
                             if (var25 != null) {
                                 var25[var17] = var22[var17];
@@ -770,11 +770,11 @@ public class MapLoader {
                     boolean var48 = this.field3618.isLinkBelow(var7, var8);
                     if (var48 && arg2 > 1 || !var48 && arg2 > 0) {
                         boolean var49 = true;
-                        if (var14 != null && !var14.field6717) {
+                        if (var14 != null && !var14.blendable) {
                             var49 = false;
                         } else if (var12 == 0 && var9 != 0) {
                             var49 = false;
-                        } else if (var11 > 0 && var15 != null && !var15.field5103) {
+                        } else if (var11 > 0 && var15 != null && !var15.hideUnderlay) {
                             var49 = false;
                         }
                         if (var49 && var44 == var45 && var44 == var46 && var44 == var47) {
@@ -813,8 +813,8 @@ public class MapLoader {
                 int var16 = var10[var12][var14] & 0xFF;
                 int var17 = var9[var12][var14] & 0xFF;
                 if (var16 != 0 || var17 != 0) {
-                    FloorOverlayType var18 = var16 == 0 ? null : this.floTypes.method8503(var16 - 1);
-                    FloorUnderlayType var19 = var17 == 0 ? null : this.field3668.method11895(var17 - 1);
+                    FloorOverlayType var18 = var16 == 0 ? null : this.floTypes.get(var16 - 1);
+                    FloorUnderlayType var19 = var17 == 0 ? null : this.field3668.get(var17 - 1);
                     if (this.field3669 == 0 && var18 == null) {
                         this.field3669 = 12;
                     }
@@ -826,7 +826,7 @@ public class MapLoader {
                     var11[0] = false;
                     FloorOverlayType var23 = var18;
                     if (var18 != null) {
-                        if (var18.field5094 == -1 && var18.field5091 == -1) {
+                        if (var18.rgb == -1 && var18.secondaryRgb == -1) {
                             var23 = var18;
                             var18 = null;
                         } else if (var19 != null && this.field3669 != 0) {
@@ -957,7 +957,7 @@ public class MapLoader {
     public void method5835(RendererToolkit arg0, FloorOverlayType arg1, FloorUnderlayType arg2, int arg3, int arg4, byte[][] arg5, byte[][] arg6, byte[][] arg7, boolean[] arg8) {
         boolean[] var10 = arg1 != null && arg1.field5097 ? field3675[this.field3669] : field3670[this.field3669];
         this.method5851(arg0, arg1, arg2, arg3, arg4, this.field3627, this.field3643, arg7, arg5, arg6, arg8);
-        this.field3685 = arg1 != null && arg1.field5094 != arg1.field5091;
+        this.field3685 = arg1 != null && arg1.rgb != arg1.secondaryRgb;
         if (!this.field3685) {
             for (int var11 = 0; var11 < 8; var11++) {
                 if (this.field3648[var11] >= 0 && this.field3689[var11] != this.field3682[var11]) {
@@ -1035,9 +1035,9 @@ public class MapLoader {
         this.field3691 = -1;
         this.field3617 = 256;
         if (arg4 != null) {
-            this.field3633 = arg4.field5094;
-            this.field3691 = arg4.field5092;
-            this.field3617 = arg4.field5087;
+            this.field3633 = arg4.rgb;
+            this.field3691 = arg4.textureId;
+            this.field3617 = arg4.hueMultiplier;
             int var18 = method5549(arg0, arg4);
             for (int var19 = 0; var19 < this.field3681; var19++) {
                 boolean var20 = false;
@@ -1118,7 +1118,7 @@ public class MapLoader {
                             arg13[this.field3690] = arg16.getFineHeight(var33, var34) - arg14.getFineHeight(var33, var34);
                         }
                     }
-                    if (var23 < 8 && this.field3648[var24] > arg4.field5096) {
+                    if (var23 < 8 && this.field3648[var24] > arg4.priority) {
                         if (arg6 != null) {
                             arg6[this.field3690] = this.field3682[var24];
                         }
@@ -1129,8 +1129,8 @@ public class MapLoader {
                         if (arg6 != null) {
                             arg6[this.field3690] = var18;
                         }
-                        arg10[this.field3690] = arg4.field5092;
-                        arg11[this.field3690] = arg4.field5087;
+                        arg10[this.field3690] = arg4.textureId;
+                        arg11[this.field3690] = arg4.hueMultiplier;
                         arg9[this.field3690] = this.field3633;
                     }
                     this.field3690++;
@@ -1140,7 +1140,7 @@ public class MapLoader {
             if (!this.field3644 && arg1 == 0) {
                 this.field3619.method7416(arg2, arg3, arg4.field5102, arg4.field5099, arg4.field5100, arg4.field5101, arg4.field5090, arg4.field5098);
             }
-            if (this.field3669 != 12 && arg4.field5094 != -1 && arg4.field5095) {
+            if (this.field3669 != 12 && arg4.rgb != -1 && arg4.blendable) {
                 this.field3694 = true;
             }
         } else if (this.field3678) {
@@ -1166,10 +1166,10 @@ public class MapLoader {
         if (arg10 == 0) {
             arg10 = arg7;
         }
-        FloorUnderlayType var25 = this.field3668.method11895(arg7 - 1);
-        FloorUnderlayType var26 = this.field3668.method11895(arg8 - 1);
-        FloorUnderlayType var27 = this.field3668.method11895(arg9 - 1);
-        FloorUnderlayType var28 = this.field3668.method11895(arg10 - 1);
+        FloorUnderlayType var25 = this.field3668.get(arg7 - 1);
+        FloorUnderlayType var26 = this.field3668.get(arg8 - 1);
+        FloorUnderlayType var27 = this.field3668.get(arg9 - 1);
+        FloorUnderlayType var28 = this.field3668.get(arg10 - 1);
         for (int var29 = 0; var29 < this.field3698; var29++) {
             boolean var30 = false;
             byte var31;
@@ -1263,35 +1263,35 @@ public class MapLoader {
                         arg15[this.field3690] = this.field3633;
                     } else if (var37 == 0 && var38 == 0) {
                         arg15[this.field3690] = arg20[arg2][arg3];
-                        arg16[this.field3690] = var25.field6713;
-                        arg17[this.field3690] = var25.field6715;
+                        arg16[this.field3690] = var25.textureId;
+                        arg17[this.field3690] = var25.hueMultiplier;
                     } else if (var37 == 0 && var38 == 512) {
                         arg15[this.field3690] = arg20[arg2][arg5];
-                        arg16[this.field3690] = var26.field6713;
-                        arg17[this.field3690] = var26.field6715;
+                        arg16[this.field3690] = var26.textureId;
+                        arg17[this.field3690] = var26.hueMultiplier;
                     } else if (var37 == 512 && var38 == 512) {
                         arg15[this.field3690] = arg20[arg4][arg5];
-                        arg16[this.field3690] = var27.field6713;
-                        arg17[this.field3690] = var27.field6715;
+                        arg16[this.field3690] = var27.textureId;
+                        arg17[this.field3690] = var27.hueMultiplier;
                     } else if (var37 == 512 && var38 == 0) {
                         arg15[this.field3690] = arg20[arg4][arg3];
-                        arg16[this.field3690] = var28.field6713;
-                        arg17[this.field3690] = var28.field6715;
+                        arg16[this.field3690] = var28.textureId;
+                        arg17[this.field3690] = var28.hueMultiplier;
                     } else {
                         if (var37 < 256) {
                             if (var38 < 256) {
-                                arg16[this.field3690] = var25.field6713;
-                                arg17[this.field3690] = var25.field6715;
+                                arg16[this.field3690] = var25.textureId;
+                                arg17[this.field3690] = var25.hueMultiplier;
                             } else {
-                                arg16[this.field3690] = var26.field6713;
-                                arg17[this.field3690] = var26.field6715;
+                                arg16[this.field3690] = var26.textureId;
+                                arg17[this.field3690] = var26.hueMultiplier;
                             }
                         } else if (var38 < 256) {
-                            arg16[this.field3690] = var28.field6713;
-                            arg17[this.field3690] = var28.field6715;
+                            arg16[this.field3690] = var28.textureId;
+                            arg17[this.field3690] = var28.hueMultiplier;
                         } else {
-                            arg16[this.field3690] = var27.field6713;
-                            arg17[this.field3690] = var27.field6715;
+                            arg16[this.field3690] = var27.textureId;
+                            arg17[this.field3690] = var27.hueMultiplier;
                         }
                         int var45 = method5029(arg20[arg2][arg3], arg20[arg4][arg3], var37 << 7 >> 9);
                         int var46 = method5029(arg20[arg2][arg5], arg20[arg4][arg5], var37 << 7 >> 9);
@@ -1321,11 +1321,11 @@ public class MapLoader {
             return;
         }
         boolean var16 = true;
-        if (arg1 != null && !arg1.field6717) {
+        if (arg1 != null && !arg1.blendable) {
             var16 = false;
         } else if (arg8 == 0 && this.field3669 != 0) {
             var16 = false;
-        } else if (arg9 > 0 && arg2 != null && !arg2.field5103) {
+        } else if (arg9 > 0 && arg2 != null && !arg2.hideUnderlay) {
             var16 = false;
         }
         if (var16 && var11 == var12 && var11 == var13 && var11 == var14) {
@@ -1340,17 +1340,17 @@ public class MapLoader {
             if (arg3 > 0) {
                 int var13 = arg7[arg3 - 1][arg4 - 1] & 0xFF;
                 if (var13 > 0) {
-                    FloorOverlayType var14 = this.floTypes.method8503(var13 - 1);
-                    if (var14.field5094 != -1 && var14.field5097) {
+                    FloorOverlayType var14 = this.floTypes.get(var13 - 1);
+                    if (var14.rgb != -1 && var14.field5097) {
                         byte var15 = arg8[arg3 - 1][arg4 - 1];
                         int var16 = arg9[arg3 - 1][arg4 - 1] * 2 + 4 & 0x7;
                         int var17 = method5549(arg0, var14);
                         if (field3665[var15][var16]) {
-                            this.field3689[0] = var14.field5094;
+                            this.field3689[0] = var14.rgb;
                             this.field3682[0] = var17;
-                            this.field3696[0] = var14.field5092;
-                            this.field3684[0] = var14.field5087;
-                            this.field3648[0] = var14.field5096;
+                            this.field3696[0] = var14.textureId;
+                            this.field3684[0] = var14.hueMultiplier;
+                            this.field3648[0] = var14.priority;
                             this.field3686[0] = 256;
                         }
                     }
@@ -1359,17 +1359,17 @@ public class MapLoader {
             if (arg3 < arg5 - 1) {
                 int var18 = arg7[arg3 + 1][arg4 - 1] & 0xFF;
                 if (var18 > 0) {
-                    FloorOverlayType var19 = this.floTypes.method8503(var18 - 1);
-                    if (var19.field5094 != -1 && var19.field5097) {
+                    FloorOverlayType var19 = this.floTypes.get(var18 - 1);
+                    if (var19.rgb != -1 && var19.field5097) {
                         byte var20 = arg8[arg3 + 1][arg4 - 1];
                         int var21 = arg9[arg3 + 1][arg4 - 1] * 2 + 6 & 0x7;
                         int var22 = method5549(arg0, var19);
                         if (field3665[var20][var21]) {
-                            this.field3689[2] = var19.field5094;
+                            this.field3689[2] = var19.rgb;
                             this.field3682[2] = var22;
-                            this.field3696[2] = var19.field5092;
-                            this.field3684[2] = var19.field5087;
-                            this.field3648[2] = var19.field5096;
+                            this.field3696[2] = var19.textureId;
+                            this.field3684[2] = var19.hueMultiplier;
+                            this.field3648[2] = var19.priority;
                             this.field3686[2] = 512;
                         }
                     }
@@ -1380,17 +1380,17 @@ public class MapLoader {
             if (arg3 > 0) {
                 int var23 = arg7[arg3 - 1][arg4 + 1] & 0xFF;
                 if (var23 > 0) {
-                    FloorOverlayType var24 = this.floTypes.method8503(var23 - 1);
-                    if (var24.field5094 != -1 && var24.field5097) {
+                    FloorOverlayType var24 = this.floTypes.get(var23 - 1);
+                    if (var24.rgb != -1 && var24.field5097) {
                         byte var25 = arg8[arg3 - 1][arg4 + 1];
                         int var26 = arg9[arg3 - 1][arg4 + 1] * 2 + 2 & 0x7;
                         int var27 = method5549(arg0, var24);
                         if (field3665[var25][var26]) {
-                            this.field3689[6] = var24.field5094;
+                            this.field3689[6] = var24.rgb;
                             this.field3682[6] = var27;
-                            this.field3696[6] = var24.field5092;
-                            this.field3684[6] = var24.field5087;
-                            this.field3648[6] = var24.field5096;
+                            this.field3696[6] = var24.textureId;
+                            this.field3684[6] = var24.hueMultiplier;
+                            this.field3648[6] = var24.priority;
                             this.field3686[6] = 64;
                         }
                     }
@@ -1399,17 +1399,17 @@ public class MapLoader {
             if (arg3 < arg5 - 1) {
                 int var28 = arg7[arg3 + 1][arg4 + 1] & 0xFF;
                 if (var28 > 0) {
-                    FloorOverlayType var29 = this.floTypes.method8503(var28 - 1);
-                    if (var29.field5094 != -1 && var29.field5097) {
+                    FloorOverlayType var29 = this.floTypes.get(var28 - 1);
+                    if (var29.rgb != -1 && var29.field5097) {
                         byte var30 = arg8[arg3 + 1][arg4 + 1];
                         int var31 = arg9[arg3 + 1][arg4 + 1] * 2 & 0x7;
                         int var32 = method5549(arg0, var29);
                         if (field3665[var30][var31]) {
-                            this.field3689[4] = var29.field5094;
+                            this.field3689[4] = var29.rgb;
                             this.field3682[4] = var32;
-                            this.field3696[4] = var29.field5092;
-                            this.field3684[4] = var29.field5087;
-                            this.field3648[4] = var29.field5096;
+                            this.field3696[4] = var29.textureId;
+                            this.field3684[4] = var29.hueMultiplier;
+                            this.field3648[4] = var29.priority;
                             this.field3686[4] = 128;
                         }
                     }
@@ -1419,8 +1419,8 @@ public class MapLoader {
         if (arg4 > 0) {
             int var33 = arg7[arg3][arg4 - 1] & 0xFF;
             if (var33 > 0) {
-                FloorOverlayType var34 = this.floTypes.method8503(var33 - 1);
-                if (var34.field5094 != -1) {
+                FloorOverlayType var34 = this.floTypes.get(var33 - 1);
+                if (var34.rgb != -1) {
                     byte var35 = arg8[arg3][arg4 - 1];
                     byte var36 = arg9[arg3][arg4 - 1];
                     if (var34.field5097) {
@@ -1430,17 +1430,17 @@ public class MapLoader {
                         for (int var40 = 0; var40 < 3; var40++) {
                             var38 &= 0x7;
                             var37 &= 0x7;
-                            if (field3665[var35][var38] && this.field3648[var37] <= var34.field5096) {
-                                this.field3689[var37] = var34.field5094;
+                            if (field3665[var35][var38] && this.field3648[var37] <= var34.priority) {
+                                this.field3689[var37] = var34.rgb;
                                 this.field3682[var37] = var39;
-                                this.field3696[var37] = var34.field5092;
-                                this.field3684[var37] = var34.field5087;
-                                if (var34.field5096 == this.field3648[var37]) {
+                                this.field3696[var37] = var34.textureId;
+                                this.field3684[var37] = var34.hueMultiplier;
+                                if (var34.priority == this.field3648[var37]) {
                                     this.field3686[var37] |= 0x20;
                                 } else {
                                     this.field3686[var37] = 32;
                                 }
-                                this.field3648[var37] = var34.field5096;
+                                this.field3648[var37] = var34.priority;
                             }
                             var38++;
                             var37--;
@@ -1457,8 +1457,8 @@ public class MapLoader {
         if (arg4 < arg6 - 1) {
             int var41 = arg7[arg3][arg4 + 1] & 0xFF;
             if (var41 > 0) {
-                FloorOverlayType var42 = this.floTypes.method8503(var41 - 1);
-                if (var42.field5094 != -1) {
+                FloorOverlayType var42 = this.floTypes.get(var41 - 1);
+                if (var42.rgb != -1) {
                     byte var43 = arg8[arg3][arg4 + 1];
                     byte var44 = arg9[arg3][arg4 + 1];
                     if (var42.field5097) {
@@ -1468,17 +1468,17 @@ public class MapLoader {
                         for (int var48 = 0; var48 < 3; var48++) {
                             var46 &= 0x7;
                             var45 &= 0x7;
-                            if (field3665[var43][var46] && this.field3648[var45] <= var42.field5096) {
-                                this.field3689[var45] = var42.field5094;
+                            if (field3665[var43][var46] && this.field3648[var45] <= var42.priority) {
+                                this.field3689[var45] = var42.rgb;
                                 this.field3682[var45] = var47;
-                                this.field3696[var45] = var42.field5092;
-                                this.field3684[var45] = var42.field5087;
-                                if (var42.field5096 == this.field3648[var45]) {
+                                this.field3696[var45] = var42.textureId;
+                                this.field3684[var45] = var42.hueMultiplier;
+                                if (var42.priority == this.field3648[var45]) {
                                     this.field3686[var45] |= 0x10;
                                 } else {
                                     this.field3686[var45] = 16;
                                 }
-                                this.field3648[var45] = var42.field5096;
+                                this.field3648[var45] = var42.priority;
                             }
                             var46--;
                             var45++;
@@ -1495,8 +1495,8 @@ public class MapLoader {
         if (arg3 > 0) {
             int var49 = arg7[arg3 - 1][arg4] & 0xFF;
             if (var49 > 0) {
-                FloorOverlayType var50 = this.floTypes.method8503(var49 - 1);
-                if (var50.field5094 != -1) {
+                FloorOverlayType var50 = this.floTypes.get(var49 - 1);
+                if (var50.rgb != -1) {
                     byte var51 = arg8[arg3 - 1][arg4];
                     byte var52 = arg9[arg3 - 1][arg4];
                     if (var50.field5097) {
@@ -1506,17 +1506,17 @@ public class MapLoader {
                         for (int var56 = 0; var56 < 3; var56++) {
                             var54 &= 0x7;
                             var53 &= 0x7;
-                            if (field3665[var51][var54] && this.field3648[var53] <= var50.field5096) {
-                                this.field3689[var53] = var50.field5094;
+                            if (field3665[var51][var54] && this.field3648[var53] <= var50.priority) {
+                                this.field3689[var53] = var50.rgb;
                                 this.field3682[var53] = var55;
-                                this.field3696[var53] = var50.field5092;
-                                this.field3684[var53] = var50.field5087;
-                                if (var50.field5096 == this.field3648[var53]) {
+                                this.field3696[var53] = var50.textureId;
+                                this.field3684[var53] = var50.hueMultiplier;
+                                if (var50.priority == this.field3648[var53]) {
                                     this.field3686[var53] |= 0x8;
                                 } else {
                                     this.field3686[var53] = 8;
                                 }
-                                this.field3648[var53] = var50.field5096;
+                                this.field3648[var53] = var50.priority;
                             }
                             var54--;
                             var53++;
@@ -1533,8 +1533,8 @@ public class MapLoader {
         if (arg3 < arg5 - 1) {
             int var57 = arg7[arg3 + 1][arg4] & 0xFF;
             if (var57 > 0) {
-                FloorOverlayType var58 = this.floTypes.method8503(var57 - 1);
-                if (var58.field5094 != -1) {
+                FloorOverlayType var58 = this.floTypes.get(var57 - 1);
+                if (var58.rgb != -1) {
                     byte var59 = arg8[arg3 + 1][arg4];
                     byte var60 = arg9[arg3 + 1][arg4];
                     if (var58.field5097) {
@@ -1544,17 +1544,17 @@ public class MapLoader {
                         for (int var64 = 0; var64 < 3; var64++) {
                             var62 &= 0x7;
                             var61 &= 0x7;
-                            if (field3665[var59][var62] && this.field3648[var61] <= var58.field5096) {
-                                this.field3689[var61] = var58.field5094;
+                            if (field3665[var59][var62] && this.field3648[var61] <= var58.priority) {
+                                this.field3689[var61] = var58.rgb;
                                 this.field3682[var61] = var63;
-                                this.field3696[var61] = var58.field5092;
-                                this.field3684[var61] = var58.field5087;
-                                if (var58.field5096 == this.field3648[var61]) {
+                                this.field3696[var61] = var58.textureId;
+                                this.field3684[var61] = var58.hueMultiplier;
+                                if (var58.priority == this.field3648[var61]) {
                                     this.field3686[var61] |= 0x4;
                                 } else {
                                     this.field3686[var61] = 4;
                                 }
-                                this.field3648[var61] = var58.field5096;
+                                this.field3648[var61] = var58.priority;
                             }
                             var62++;
                             var61--;
@@ -1574,33 +1574,33 @@ public class MapLoader {
         int var65 = method5549(arg0, arg1);
         for (int var66 = 0; var66 < 8; var66++) {
             int var67 = var66 - this.field3688 * 2 & 0x7;
-            if (field3665[this.field3669][var66] && this.field3648[var67] <= arg1.field5096) {
-                this.field3689[var67] = arg1.field5094;
+            if (field3665[this.field3669][var66] && this.field3648[var67] <= arg1.priority) {
+                this.field3689[var67] = arg1.rgb;
                 this.field3682[var67] = var65;
-                this.field3696[var67] = arg1.field5092;
-                this.field3684[var67] = arg1.field5087;
-                if (arg1.field5096 == this.field3648[var67]) {
+                this.field3696[var67] = arg1.textureId;
+                this.field3684[var67] = arg1.hueMultiplier;
+                if (arg1.priority == this.field3648[var67]) {
                     this.field3686[var67] |= 0x2;
                 } else {
                     this.field3686[var67] = 2;
                 }
-                this.field3648[var67] = arg1.field5096;
+                this.field3648[var67] = arg1.priority;
             }
         }
     }
 
     @ObfuscatedName("kj.v(Lra;Lry;I)I")
     public static final int method5549(RendererToolkit arg0, FloorOverlayType arg1) {
-        if (arg1.field5091 != -1) {
-            return arg1.field5091;
+        if (arg1.secondaryRgb != -1) {
+            return arg1.secondaryRgb;
         }
-        if (arg1.field5092 != -1) {
-            Material var2 = arg0.field400.method889(arg1.field5092);
+        if (arg1.textureId != -1) {
+            Material var2 = arg0.field400.method889(arg1.textureId);
             if (!var2.field1250) {
                 return var2.field1260;
             }
         }
-        return arg1.field5094;
+        return arg1.rgb;
     }
 
     @ObfuscatedName("ki.k(IIII)I")

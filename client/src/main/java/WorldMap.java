@@ -57,7 +57,7 @@ public class WorldMap {
         Statics.field4293 = new Object[Statics.currentAreaDisplaySizeX * Statics.currentAreaDisplaySizeZ];
         Statics.field4294 = new byte[Statics.currentAreaDisplaySizeX * Statics.currentAreaDisplaySizeZ];
         Statics.field4295 = new ArrayList[3][Statics.currentAreaDisplaySizeX >> 6][Statics.currentAreaDisplaySizeZ >> 6];
-        Statics.field4267 = new int[Statics.field4278.field5105 + 1];
+        Statics.field4267 = new int[Statics.field4278.capacity + 1];
     }
 
     @ObfuscatedName("om.a()V")
@@ -106,24 +106,24 @@ public class WorldMap {
 
     @ObfuscatedName("om.l(Lma;II)V")
     public static void computeFloorOverlayColours(MaterialTypeList arg0, int arg1, int arg2) {
-        for (int var3 = 0; var3 < Statics.field4278.field5105; var3++) {
+        for (int var3 = 0; var3 < Statics.field4278.capacity; var3++) {
             Statics.field4267[var3 + 1] = method7088(arg0, var3, arg1, arg2);
         }
     }
 
     @ObfuscatedName("om.f(Lma;III)I")
     public static int method7088(MaterialTypeList arg0, int arg1, int arg2, int arg3) {
-        FloorOverlayType var4 = Statics.field4278.method8503(arg1);
+        FloorOverlayType var4 = Statics.field4278.get(arg1);
         if (var4 == null) {
             return 0;
         }
-        int var5 = var4.field5092;
+        int var5 = var4.textureId;
         if (var5 >= 0 && arg0.method889(var5).field1250) {
             var5 = -1;
         }
         int var9;
-        if (var4.field5091 >= 0) {
-            int var6 = var4.field5091;
+        if (var4.secondaryRgb >= 0) {
+            int var6 = var4.secondaryRgb;
             int var7 = (var6 & 0x7F) + arg3;
             if (var7 < 0) {
                 var7 = 0;
@@ -134,10 +134,10 @@ public class WorldMap {
             var9 = Statics.field5083[ColourUtils.method3444(ColourUtils.method4740(var8, 96)) & 0xFFFF] | 0xFF000000;
         } else if (var5 >= 0) {
             var9 = Statics.field5083[ColourUtils.method3444(ColourUtils.method4740(arg0.method889(var5).field1260, 96)) & 0xFFFF] | 0xFF000000;
-        } else if (var4.field5094 == -1) {
+        } else if (var4.rgb == -1) {
             var9 = 0;
         } else {
-            int var10 = var4.field5094;
+            int var10 = var4.rgb;
             int var11 = (var10 & 0x7F) + arg3;
             if (var11 < 0) {
                 var11 = 0;
@@ -408,22 +408,22 @@ public class WorldMap {
                 if (var11 < Statics.currentAreaDisplaySizeX) {
                     int var14 = arg0[Statics.currentAreaDisplaySizeX * var13 + var11] & 0xFF;
                     if (var14 > 0) {
-                        FloorUnderlayType var15 = Statics.field4265.method11895(var14 - 1);
-                        var5[var13] += var15.field6718;
-                        var6[var13] += var15.field6714;
-                        var7[var13] += var15.field6720;
-                        var8[var13] += var15.field6721;
+                        FloorUnderlayType var15 = Statics.field4265.get(var14 - 1);
+                        var5[var13] += var15.hue;
+                        var6[var13] += var15.saturation;
+                        var7[var13] += var15.lightness;
+                        var8[var13] += var15.chromaWeight;
                         var10002 = var9[var13]++;
                     }
                 }
                 if (var12 >= 0) {
                     int var16 = arg0[Statics.currentAreaDisplaySizeX * var13 + var12] & 0xFF;
                     if (var16 > 0) {
-                        FloorUnderlayType var17 = Statics.field4265.method11895(var16 - 1);
-                        var5[var13] -= var17.field6718;
-                        var6[var13] -= var17.field6714;
-                        var7[var13] -= var17.field6720;
-                        var8[var13] -= var17.field6721;
+                        FloorUnderlayType var17 = Statics.field4265.get(var16 - 1);
+                        var5[var13] -= var17.hue;
+                        var6[var13] -= var17.saturation;
+                        var7[var13] -= var17.lightness;
+                        var8[var13] -= var17.chromaWeight;
                         var10002 = var9[var13]--;
                     }
                 }
